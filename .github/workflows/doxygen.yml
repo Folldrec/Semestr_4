@@ -1,4 +1,4 @@
-name: Generate Doxygen Docs
+name: Deploy Docs
 
 on:
   push:
@@ -8,26 +8,28 @@ permissions:
   contents: write
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Doxygen
-        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+      # Створюємо структуру папок для сайту
+      - name: Prepare Public Folder
+        run: |
+          mkdir public
+          mkdir -p public/lab3
+          mkdir -p public/project
 
-      # Запускаємо перший Doxyfile (вкажіть правильний шлях до нього
-      - name: Generate Docs for Lab_3
-        run: doxygen Doxygen_file/Lab_3
+      # Копіюємо ВЖЕ ГОТОВІ html папки
+      - name: Copy Files
+        run: |
+          cp -r Lab_3/html/* public/lab3/
+          cp -r Project_2/html/* public/project/
 
-      # Запускаємо другий Doxyfile (вкажіть правильний шлях до нього)
-      - name: Generate Docs for Project_2
-        run: doxygen Doxygen_file/Project
-
-      # Публікуємо СПІЛЬНУ папку docs, куди збереглися обидва результати
+      # Публікуємо
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./Doxygen_file
+          publish_dir: ./public
