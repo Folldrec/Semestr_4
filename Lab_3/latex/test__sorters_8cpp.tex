@@ -1,0 +1,187 @@
+\doxysection{tests/test\+\_\+sorters.cpp File Reference}
+\hypertarget{test__sorters_8cpp}{}\label{test__sorters_8cpp}\index{tests/test\_sorters.cpp@{tests/test\_sorters.cpp}}
+
+
+Unit tests for \doxylink{class_sequential_merge_sort}{Sequential\+Merge\+Sort} and \doxylink{class_parallel_merge_sort}{Parallel\+Merge\+Sort}.  
+
+
+{\ttfamily \#include "{}../sort/\+Sequential\+Merge\+Sort.\+hpp"{}}\newline
+{\ttfamily \#include "{}../sort/\+Parallel\+Merge\+Sort.\+hpp"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$cassert$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{test__sorters_8cpp_a9cc34fd87cb865c77439a5d39b3b111b}{ASSERT\+\_\+\+EQ}}(a,  b)
+\item 
+\#define \mbox{\hyperlink{test__sorters_8cpp_a305a7326a1f4f59bbcafcb3e35a732c7}{ASSERT\+\_\+\+TRUE}}(expr)
+\item 
+\#define \mbox{\hyperlink{test__sorters_8cpp_a01fc5733cbe98c68f48a08aed54adc06}{ASSERT\+\_\+\+THROWS}}(expr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{test__sorters_8cpp_ae50961029d8c4aad1cf99a90ff9a69a9}\label{test__sorters_8cpp_ae50961029d8c4aad1cf99a90ff9a69a9} 
+void {\bfseries test\+\_\+seq\+\_\+typical} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a79d6de593c3b6bf366414778dfb6ff47}\label{test__sorters_8cpp_a79d6de593c3b6bf366414778dfb6ff47} 
+void {\bfseries test\+\_\+seq\+\_\+empty} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a6c484fd370a7e3f7822bb839c30ccb04}\label{test__sorters_8cpp_a6c484fd370a7e3f7822bb839c30ccb04} 
+void {\bfseries test\+\_\+seq\+\_\+single} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a869113f4e5fe8df8a38916bb0e107b66}\label{test__sorters_8cpp_a869113f4e5fe8df8a38916bb0e107b66} 
+void {\bfseries test\+\_\+seq\+\_\+two\+\_\+sorted} ()
+\item 
+\Hypertarget{test__sorters_8cpp_afb35b6c80820e17b957f9096654bfefe}\label{test__sorters_8cpp_afb35b6c80820e17b957f9096654bfefe} 
+void {\bfseries test\+\_\+seq\+\_\+two\+\_\+reversed} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a68eb025cd74ae96b46b54c4ce45962b5}\label{test__sorters_8cpp_a68eb025cd74ae96b46b54c4ce45962b5} 
+void {\bfseries test\+\_\+seq\+\_\+already\+\_\+sorted} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a82d50943beaccb48c2ec1db6a34126eb}\label{test__sorters_8cpp_a82d50943beaccb48c2ec1db6a34126eb} 
+void {\bfseries test\+\_\+seq\+\_\+reverse\+\_\+sorted} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a424db9f46df218bec7be2a950ff9acea}\label{test__sorters_8cpp_a424db9f46df218bec7be2a950ff9acea} 
+void {\bfseries test\+\_\+seq\+\_\+duplicates} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a875deadf386092532cafc8068e5f775b}\label{test__sorters_8cpp_a875deadf386092532cafc8068e5f775b} 
+void {\bfseries test\+\_\+seq\+\_\+all\+\_\+equal} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a1fd71d11cfaefa4c3e2f486786c7aff5}\label{test__sorters_8cpp_a1fd71d11cfaefa4c3e2f486786c7aff5} 
+void {\bfseries test\+\_\+seq\+\_\+negatives} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a6379d31bf7f431a4eb9095c2aa05214a}\label{test__sorters_8cpp_a6379d31bf7f431a4eb9095c2aa05214a} 
+void {\bfseries test\+\_\+seq\+\_\+large\+\_\+random} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a0cf314ab63b3fff8ac5a4bd0e018ba2d}\label{test__sorters_8cpp_a0cf314ab63b3fff8ac5a4bd0e018ba2d} 
+void {\bfseries test\+\_\+seq\+\_\+no\+\_\+mutation} ()
+\item 
+\Hypertarget{test__sorters_8cpp_af10e469156fae0b56040a758a8684dc5}\label{test__sorters_8cpp_af10e469156fae0b56040a758a8684dc5} 
+void {\bfseries test\+\_\+seq\+\_\+get\+\_\+name} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a880333e35ee473abb5df7a1ab05f8ce5}\label{test__sorters_8cpp_a880333e35ee473abb5df7a1ab05f8ce5} 
+void {\bfseries test\+\_\+par\+\_\+typical} ()
+\item 
+\Hypertarget{test__sorters_8cpp_ac6745ebae9a0551bed675b30928b4382}\label{test__sorters_8cpp_ac6745ebae9a0551bed675b30928b4382} 
+void {\bfseries test\+\_\+par\+\_\+empty} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a583e0ecbe51ec291cafdeebd0db72654}\label{test__sorters_8cpp_a583e0ecbe51ec291cafdeebd0db72654} 
+void {\bfseries test\+\_\+par\+\_\+single} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a84503f5ce422f353f40b62b75940e810}\label{test__sorters_8cpp_a84503f5ce422f353f40b62b75940e810} 
+void {\bfseries test\+\_\+par\+\_\+already\+\_\+sorted} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a4e2d415fdb8ce9111dda50c3e7e83f13}\label{test__sorters_8cpp_a4e2d415fdb8ce9111dda50c3e7e83f13} 
+void {\bfseries test\+\_\+par\+\_\+reverse\+\_\+sorted} ()
+\item 
+\Hypertarget{test__sorters_8cpp_af30a4ef427a327d34f4bc021d6e0b783}\label{test__sorters_8cpp_af30a4ef427a327d34f4bc021d6e0b783} 
+void {\bfseries test\+\_\+par\+\_\+duplicates} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a1b2c89b53e5e5cd1e5b458955df5d92f}\label{test__sorters_8cpp_a1b2c89b53e5e5cd1e5b458955df5d92f} 
+void {\bfseries test\+\_\+par\+\_\+negatives} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a3a10275bf2971e4309a469573aa6ded6}\label{test__sorters_8cpp_a3a10275bf2971e4309a469573aa6ded6} 
+void {\bfseries test\+\_\+par\+\_\+large\+\_\+random} ()
+\item 
+\Hypertarget{test__sorters_8cpp_ad6e1c0dfcc5271dae4263df3377392d3}\label{test__sorters_8cpp_ad6e1c0dfcc5271dae4263df3377392d3} 
+void {\bfseries test\+\_\+par\+\_\+no\+\_\+mutation} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a494842844ce8cf99b5581ff9cd8f4ecb}\label{test__sorters_8cpp_a494842844ce8cf99b5581ff9cd8f4ecb} 
+void {\bfseries test\+\_\+par\+\_\+invalid\+\_\+threads\+\_\+zero} ()
+\item 
+\Hypertarget{test__sorters_8cpp_acd5d792d011660895fe1b53760cefe11}\label{test__sorters_8cpp_acd5d792d011660895fe1b53760cefe11} 
+void {\bfseries test\+\_\+par\+\_\+invalid\+\_\+threads\+\_\+neg} ()
+\item 
+\Hypertarget{test__sorters_8cpp_aadeb0c1e6813f733f14f33c3e8bf71a2}\label{test__sorters_8cpp_aadeb0c1e6813f733f14f33c3e8bf71a2} 
+void {\bfseries test\+\_\+par\+\_\+invalid\+\_\+threshold\+\_\+zero} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a6e4902499a60db3f5a097e503214c3a4}\label{test__sorters_8cpp_a6e4902499a60db3f5a097e503214c3a4} 
+void {\bfseries test\+\_\+par\+\_\+properties} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a574d518522540972402c910e6ff43352}\label{test__sorters_8cpp_a574d518522540972402c910e6ff43352} 
+void {\bfseries test\+\_\+par\+\_\+get\+\_\+name\+\_\+contains\+\_\+thread\+\_\+count} ()
+\item 
+\Hypertarget{test__sorters_8cpp_a8838c721445273aed85ffb56326f5938}\label{test__sorters_8cpp_a8838c721445273aed85ffb56326f5938} 
+void {\bfseries test\+\_\+equivalence} ()
+\item 
+\Hypertarget{test__sorters_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{test__sorters_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int {\bfseries main} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Unit tests for \doxylink{class_sequential_merge_sort}{Sequential\+Merge\+Sort} and \doxylink{class_parallel_merge_sort}{Parallel\+Merge\+Sort}. 
+
+Uses a lightweight hand-\/rolled test framework so no external dependency (Google\+Test, Catch2, …) is required.
+
+Covers\+:
+\begin{DoxyItemize}
+\item Correct sorting\+: typical, empty, single element, two elements, already-\/sorted, reverse-\/sorted, duplicates, all-\/equal, negatives, mixed positive/negative, large random input.
+\item Input not mutated.
+\item Sequential and parallel results are identical.
+\item Invalid constructor arguments throw std\+::invalid\+\_\+argument. 
+\end{DoxyItemize}
+
+\label{doc-define-members}
+\Hypertarget{test__sorters_8cpp_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{test__sorters_8cpp_a9cc34fd87cb865c77439a5d39b3b111b}\index{test\_sorters.cpp@{test\_sorters.cpp}!ASSERT\_EQ@{ASSERT\_EQ}}
+\index{ASSERT\_EQ@{ASSERT\_EQ}!test\_sorters.cpp@{test\_sorters.cpp}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_EQ}{ASSERT\_EQ}}
+{\footnotesize\ttfamily \label{test__sorters_8cpp_a9cc34fd87cb865c77439a5d39b3b111b} 
+\#define ASSERT\+\_\+\+EQ(\begin{DoxyParamCaption}\item[{}]{a}{, }\item[{}]{b}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{do}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ ((a)\ !=\ (b))\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}\ \ FAIL\ \ "{}}\ <<\ \_\_FILE\_\_\ <<\ \textcolor{stringliteral}{"{}:"{}}\ <<\ \_\_LINE\_\_\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ expected\ equal\(\backslash\)n"{}};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ++g\_failed;\ \textcolor{keywordflow}{return};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+\Hypertarget{test__sorters_8cpp_a01fc5733cbe98c68f48a08aed54adc06}\index{test\_sorters.cpp@{test\_sorters.cpp}!ASSERT\_THROWS@{ASSERT\_THROWS}}
+\index{ASSERT\_THROWS@{ASSERT\_THROWS}!test\_sorters.cpp@{test\_sorters.cpp}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_THROWS}{ASSERT\_THROWS}}
+{\footnotesize\ttfamily \label{test__sorters_8cpp_a01fc5733cbe98c68f48a08aed54adc06} 
+\#define ASSERT\+\_\+\+THROWS(\begin{DoxyParamCaption}\item[{}]{expr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{do}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ caught\ =\ \textcolor{keyword}{false};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{\ expr;\ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::invalid\_argument\&)\ \{\ caught\ =\ \textcolor{keyword}{true};\ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (!caught)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}\ \ FAIL\ \ "{}}\ <<\ \_\_FILE\_\_\ <<\ \textcolor{stringliteral}{"{}:"{}}\ <<\ \_\_LINE\_\_\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ expected\ std::invalid\_argument\(\backslash\)n"{}};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ++g\_failed;\ \textcolor{keywordflow}{return};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+\Hypertarget{test__sorters_8cpp_a305a7326a1f4f59bbcafcb3e35a732c7}\index{test\_sorters.cpp@{test\_sorters.cpp}!ASSERT\_TRUE@{ASSERT\_TRUE}}
+\index{ASSERT\_TRUE@{ASSERT\_TRUE}!test\_sorters.cpp@{test\_sorters.cpp}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_TRUE}{ASSERT\_TRUE}}
+{\footnotesize\ttfamily \label{test__sorters_8cpp_a305a7326a1f4f59bbcafcb3e35a732c7} 
+\#define ASSERT\+\_\+\+TRUE(\begin{DoxyParamCaption}\item[{}]{expr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{do}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (!(expr))\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}\ \ FAIL\ \ "{}}\ <<\ \_\_FILE\_\_\ <<\ \textcolor{stringliteral}{"{}:"{}}\ <<\ \_\_LINE\_\_\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ expected\ true:\ "{}}\ \#expr\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ++g\_failed;\ \textcolor{keywordflow}{return};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}

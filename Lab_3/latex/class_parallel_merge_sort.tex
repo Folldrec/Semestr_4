@@ -1,0 +1,112 @@
+\doxysection{Parallel\+Merge\+Sort Class Reference}
+\hypertarget{class_parallel_merge_sort}{}\label{class_parallel_merge_sort}\index{ParallelMergeSort@{ParallelMergeSort}}
+
+
+Parallel merge sort backed by std\+::thread.  
+
+
+
+
+{\ttfamily \#include $<$Parallel\+Merge\+Sort.\+hpp$>$}
+
+Inheritance diagram for Parallel\+Merge\+Sort\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_parallel_merge_sort}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_parallel_merge_sort_a0f274a868c3c9248161e924998be1b38}\label{class_parallel_merge_sort_a0f274a868c3c9248161e924998be1b38} 
+{\bfseries Parallel\+Merge\+Sort} (int num\+Threads=4, std\+::size\+\_\+t sequential\+Threshold=1000)
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_parallel_merge_sort_ad9a2251a2e23d7996981f780c9da1661}{sort}} (const std\+::vector$<$ int $>$ \&data) const override
+\begin{DoxyCompactList}\small\item\em Sort a vector using parallel merge sort. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_parallel_merge_sort_aa54a1f25abcde6f6bfa0d3d0d3ccb2f2}{get\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Human-\/readable name of this sorter. \end{DoxyCompactList}\item 
+\Hypertarget{class_parallel_merge_sort_ae14fdb1c7670dee289bab8ecd1e88466}\label{class_parallel_merge_sort_ae14fdb1c7670dee289bab8ecd1e88466} 
+int {\bfseries get\+Num\+Threads} () const
+\begin{DoxyCompactList}\small\item\em Number of threads configured for this sorter. \end{DoxyCompactList}\item 
+\Hypertarget{class_parallel_merge_sort_a059a572a44f2c3564df1a8f93f1c6e80}\label{class_parallel_merge_sort_a059a572a44f2c3564df1a8f93f1c6e80} 
+std\+::size\+\_\+t {\bfseries get\+Sequential\+Threshold} () const
+\begin{DoxyCompactList}\small\item\em Sequential-\/fallback threshold. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parallel merge sort backed by std\+::thread. 
+
+The list is recursively split in half. Each half is sorted concurrently on a new thread as long as the current recursion depth is below {\ttfamily max\+Depth}. Once the depth limit is reached (or the sub-\/array is small enough) the work falls through to \doxylink{class_sequential_merge_sort}{Sequential\+Merge\+Sort} to avoid spawning too many threads on tiny inputs.
+
+The effective thread count is at most 2\texorpdfstring{$^\wedge$}{\string^}max\+Depth. With the default {\ttfamily num\+Threads=4} the depth is set to log2(4)=2, so at most 4 threads run concurrently.
+
+Example usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ParallelMergeSort\ sorter(4);\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ up\ to\ 4\ threads}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ result\ =\ sorter.sort(\{5,3,8,1\});}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Threads} & Desired parallelism (must be \texorpdfstring{$>$}{>}= 1). \\
+\hline
+{\em sequential\+Threshold} & Sub-\/array length below which the sequential fallback is used (default 1000). \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_parallel_merge_sort_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_parallel_merge_sort_aa54a1f25abcde6f6bfa0d3d0d3ccb2f2}\index{ParallelMergeSort@{ParallelMergeSort}!getName@{getName}}
+\index{getName@{getName}!ParallelMergeSort@{ParallelMergeSort}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily \label{class_parallel_merge_sort_aa54a1f25abcde6f6bfa0d3d0d3ccb2f2} 
+std\+::string Parallel\+Merge\+Sort\+::get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Human-\/readable name of this sorter. 
+
+\begin{DoxyReturn}{Returns}
+Name string. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_sorter_ab5485d46d40bf5f0d832b73e5026d1f1}{Sorter}}.
+
+\Hypertarget{class_parallel_merge_sort_ad9a2251a2e23d7996981f780c9da1661}\index{ParallelMergeSort@{ParallelMergeSort}!sort@{sort}}
+\index{sort@{sort}!ParallelMergeSort@{ParallelMergeSort}}
+\doxysubsubsection{\texorpdfstring{sort()}{sort()}}
+{\footnotesize\ttfamily \label{class_parallel_merge_sort_ad9a2251a2e23d7996981f780c9da1661} 
+std\+::vector$<$ int $>$ Parallel\+Merge\+Sort\+::sort (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{data}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sort a vector using parallel merge sort. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Input vector (not modified). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+New sorted vector. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & if construction params are bad. \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{class_sorter_a2e534fb6a0eb756c2c315ed3c4ca8b6e}{Sorter}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sort/\mbox{\hyperlink{_parallel_merge_sort_8hpp}{Parallel\+Merge\+Sort.\+hpp}}\item 
+sort/\mbox{\hyperlink{_parallel_merge_sort_8cpp}{Parallel\+Merge\+Sort.\+cpp}}\end{DoxyCompactItemize}

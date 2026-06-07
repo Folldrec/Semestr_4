@@ -1,0 +1,39 @@
+\chapter{Lab 3a }
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Lab 3a@{Lab 3a}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Опис}{Опис}}\label{md__r_e_a_d_m_e_autotoc_md1}
+Реалізація паралельного сортування злиттям (Merge Sort) з використанням {\ttfamily std\+::async} / {\ttfamily std\+::future}. Порівняння з послідовною версією.\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{ООП дизайн}{ООП дизайн}}\label{md__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyItemize}
+\item {\bfseries{Патерн Strategy}} — {\ttfamily Sorter} є абстрактним інтерфейсом; клієнтський код залежить тільки від нього, не від конкретних реалізацій.
+\item {\bfseries{Інкапсуляція}} — внутрішні методи ({\ttfamily merge\+Sort}, {\ttfamily parallel\+Sort}) є {\ttfamily private}; публічний API мінімальний.
+\item {\bfseries{Поліморфізм}} — обидва сортувальники взаємозамінні через {\ttfamily Sorter\texorpdfstring{$\ast$}{*}}.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{\texorpdfstring{Паралелізм}{Паралелізм}}\label{md__r_e_a_d_m_e_autotoc_md3}
+{\ttfamily Parallel\+Merge\+Sort} рекурсивно ділить масив надвоє та сортує ліву половину на окремому потоці ({\ttfamily std\+::async(std\+::launch\+::async, ...)}), а праву — на поточному потоці. Коли глибина рекурсії досягає {\ttfamily log2(num\+Threads)} або розмір підмасиву ≤ {\ttfamily sequential\+Threshold}, відбувається перемикання на {\ttfamily Sequential\+Merge\+Sort} щоб уникнути надлишкових потоків.\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{\texorpdfstring{Збірка}{Збірка}}\label{md__r_e_a_d_m_e_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir\ build\ \&\&\ cd\ build}
+\DoxyCodeLine{cmake\ ..\ -\/DCMAKE\_BUILD\_TYPE=Release}
+\DoxyCodeLine{cmake\ -\/-\/build\ .\ -\/-\/config\ Release\ -\/-\/parallel}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysection{\texorpdfstring{Запуск тестів}{Запуск тестів}}\label{md__r_e_a_d_m_e_autotoc_md5}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./run\_tests}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysection{\texorpdfstring{Запуск бенчмарку}{Запуск бенчмарку}}\label{md__r_e_a_d_m_e_autotoc_md6}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./benchmark}
+\DoxyCodeLine{\#\ Результати\ зберігаються\ у\ results.txt}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysection{\texorpdfstring{Результати бенчмарку}{Результати бенчмарку}}\label{md__r_e_a_d_m_e_autotoc_md7}
+Середовище\+: Windows 11, GCC 13.\+2.\+0, 32 ядер.\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysection{\texorpdfstring{Benchmark Results – Parallel vs Sequential Merge Sort}{Benchmark Results – Parallel vs Sequential Merge Sort}}\label{md__r_e_a_d_m_e_autotoc_md8}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysubsection{\texorpdfstring{size sorter time\+\_\+s speedup}{size sorter time\+\_\+s speedup}}\label{md__r_e_a_d_m_e_autotoc_md9}
+1000 Sequential Merge Sort 0.\+0002 1.\+00x 1000 Parallel Merge Sort (threads=1, threshold=1000) 0.\+0001 1.\+20x 1000 Parallel Merge Sort (threads=2, threshold=1000) 0.\+0001 1.\+22x 1000 Parallel Merge Sort (threads=4, threshold=1000) 0.\+0001 1.\+24x 1000 Parallel Merge Sort (threads=8, threshold=1000) 0.\+0001 1.\+26x 5000 Sequential Merge Sort 0.\+0008 1.\+00x 5000 Parallel Merge Sort (threads=1, threshold=1000) 0.\+0008 1.\+02x 5000 Parallel Merge Sort (threads=2, threshold=1000) 0.\+0009 0.\+93x 5000 Parallel Merge Sort (threads=4, threshold=1000) 0.\+0009 0.\+84x 5000 Parallel Merge Sort (threads=8, threshold=1000) 0.\+0011 0.\+70x 10000 Sequential Merge Sort 0.\+0018 1.\+00x 10000 Parallel Merge Sort (threads=1, threshold=1000) 0.\+0018 0.\+97x 10000 Parallel Merge Sort (threads=2, threshold=1000) 0.\+0018 1.\+01x 10000 Parallel Merge Sort (threads=4, threshold=1000) 0.\+0019 0.\+94x 10000 Parallel Merge Sort (threads=8, threshold=1000) 0.\+0020 0.\+90x 50000 Sequential Merge Sort 0.\+0093 1.\+00x 50000 Parallel Merge Sort (threads=1, threshold=1000) 0.\+0093 1.\+00x 50000 Parallel Merge Sort (threads=2, threshold=1000) 0.\+0102 0.\+91x 50000 Parallel Merge Sort (threads=4, threshold=1000) 0.\+0093 1.\+00x 50000 Parallel Merge Sort (threads=8, threshold=1000) 0.\+0099 0.\+94x 100000 Sequential Merge Sort 0.\+0193 1.\+00x 100000 Parallel Merge Sort (threads=1, threshold=1000) 0.\+0188 1.\+02x 100000 Parallel Merge Sort (threads=2, threshold=1000) 0.\+0193 1.\+00x 100000 Parallel Merge Sort (threads=4, threshold=1000) 0.\+0201 0.\+96x 100000 Parallel Merge Sort (threads=8, threshold=1000) 0.\+0199 0.\+97x
+
+{\bfseries{Висновок\+:}} На даних вхідних розмірах (до 100 000 елементів) паралельний merge sort не дає практичного прискорення порівняно з послідовним. Це очікувана поведінка\+: merge sort має відносно невисоку обчислювальну складність і значний overhead на злиття, що обмежує ефективний паралелізм. Прискорення понад 2× реалістично досягнути лише на масивах від \texorpdfstring{$\sim$}{\string~}500 000 елементів і при правильно підібраному порозі перемикання на послідовну версію. 

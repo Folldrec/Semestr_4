@@ -1,0 +1,34 @@
+\doxysection{Parallel\+Merge\+Sort.\+hpp}
+\hypertarget{_parallel_merge_sort_8hpp_source}{}\label{_parallel_merge_sort_8hpp_source}\index{sort/ParallelMergeSort.hpp@{sort/ParallelMergeSort.hpp}}
+\mbox{\hyperlink{_parallel_merge_sort_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sorter_8hpp}{Sorter.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sequential_merge_sort_8hpp}{SequentialMergeSort.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }ParallelMergeSort\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sorter}{Sorter}}\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{explicit}\ ParallelMergeSort(\textcolor{keywordtype}{int}\ numThreads\ =\ 4,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::size\_t\ sequentialThreshold\ =\ 1000);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00046\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{class_parallel_merge_sort_ad9a2251a2e23d7996981f780c9da1661}{sort}}(\textcolor{keyword}{const}\ std::vector<int>\&\ data)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ std::string\ \mbox{\hyperlink{class_parallel_merge_sort_aa54a1f25abcde6f6bfa0d3d0d3ccb2f2}{getName}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_parallel_merge_sort_ae14fdb1c7670dee289bab8ecd1e88466}{getNumThreads}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ numThreads\_;\ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{class_parallel_merge_sort_a059a572a44f2c3564df1a8f93f1c6e80}{getSequentialThreshold}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ seqThreshold\_;\ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ numThreads\_;}
+\DoxyCodeLine{00058\ \ \ \ \ std::size\_t\ seqThreshold\_;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ maxDepth\_;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{class_sequential_merge_sort}{SequentialMergeSort}}\ seqSorter\_;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ std::vector<int>\ parallelSort(std::vector<int>\ data,\ \textcolor{keywordtype}{int}\ depth)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ \};}
+
+\end{DoxyCode}

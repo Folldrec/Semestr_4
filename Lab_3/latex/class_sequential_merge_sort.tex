@@ -1,0 +1,108 @@
+\doxysection{Sequential\+Merge\+Sort Class Reference}
+\hypertarget{class_sequential_merge_sort}{}\label{class_sequential_merge_sort}\index{SequentialMergeSort@{SequentialMergeSort}}
+
+
+Classic sequential merge sort.  
+
+
+
+
+{\ttfamily \#include $<$Sequential\+Merge\+Sort.\+hpp$>$}
+
+Inheritance diagram for Sequential\+Merge\+Sort\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sequential_merge_sort}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_sequential_merge_sort_af16357015953643a114ca051eafa1ac3}{sort}} (const std\+::vector$<$ int $>$ \&data) const override
+\begin{DoxyCompactList}\small\item\em Sort a vector using sequential merge sort. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_sequential_merge_sort_a4abbe3a45bd1ee5f266d415e2fbeabb7}{get\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Human-\/readable name of this sorter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::vector$<$ int $>$ \mbox{\hyperlink{class_sequential_merge_sort_ae3a6852826b364e86315980550a2eb54}{merge}} (const std\+::vector$<$ int $>$ \&left, const std\+::vector$<$ int $>$ \&right)
+\begin{DoxyCompactList}\small\item\em Merge two sorted vectors into one sorted vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classic sequential merge sort. 
+
+Time complexity\+: O(n log n) Space complexity\+: O(n)
+
+Runs entirely on the calling thread — no parallelism. Used as the baseline for benchmarks and as the fallback inside \doxylink{class_parallel_merge_sort}{Parallel\+Merge\+Sort} for small sub-\/arrays. 
+
+\label{doc-func-members}
+\Hypertarget{class_sequential_merge_sort_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_sequential_merge_sort_a4abbe3a45bd1ee5f266d415e2fbeabb7}\index{SequentialMergeSort@{SequentialMergeSort}!getName@{getName}}
+\index{getName@{getName}!SequentialMergeSort@{SequentialMergeSort}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily \label{class_sequential_merge_sort_a4abbe3a45bd1ee5f266d415e2fbeabb7} 
+std\+::string Sequential\+Merge\+Sort\+::get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Human-\/readable name of this sorter. 
+
+\begin{DoxyReturn}{Returns}
+Name string. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_sorter_ab5485d46d40bf5f0d832b73e5026d1f1}{Sorter}}.
+
+\Hypertarget{class_sequential_merge_sort_ae3a6852826b364e86315980550a2eb54}\index{SequentialMergeSort@{SequentialMergeSort}!merge@{merge}}
+\index{merge@{merge}!SequentialMergeSort@{SequentialMergeSort}}
+\doxysubsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily \label{class_sequential_merge_sort_ae3a6852826b364e86315980550a2eb54} 
+std\+::vector$<$ int $>$ Sequential\+Merge\+Sort\+::merge (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{left}{, }\item[{const std\+::vector$<$ int $>$ \&}]{right}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Merge two sorted vectors into one sorted vector. 
+
+Static so it can be reused by \doxylink{class_parallel_merge_sort}{Parallel\+Merge\+Sort} without creating an extra object.
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & Left sorted sub-\/vector. \\
+\hline
+{\em right} & Right sorted sub-\/vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Merged sorted vector. 
+\end{DoxyReturn}
+\Hypertarget{class_sequential_merge_sort_af16357015953643a114ca051eafa1ac3}\index{SequentialMergeSort@{SequentialMergeSort}!sort@{sort}}
+\index{sort@{sort}!SequentialMergeSort@{SequentialMergeSort}}
+\doxysubsubsection{\texorpdfstring{sort()}{sort()}}
+{\footnotesize\ttfamily \label{class_sequential_merge_sort_af16357015953643a114ca051eafa1ac3} 
+std\+::vector$<$ int $>$ Sequential\+Merge\+Sort\+::sort (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{data}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sort a vector using sequential merge sort. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Input vector (not modified). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+New sorted vector. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_sorter_a2e534fb6a0eb756c2c315ed3c4ca8b6e}{Sorter}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sort/\mbox{\hyperlink{_sequential_merge_sort_8hpp}{Sequential\+Merge\+Sort.\+hpp}}\item 
+sort/\mbox{\hyperlink{_sequential_merge_sort_8cpp}{Sequential\+Merge\+Sort.\+cpp}}\end{DoxyCompactItemize}

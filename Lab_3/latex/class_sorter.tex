@@ -1,0 +1,78 @@
+\doxysection{Sorter Class Reference}
+\hypertarget{class_sorter}{}\label{class_sorter}\index{Sorter@{Sorter}}
+
+
+Abstract interface for sorting algorithms.  
+
+
+
+
+{\ttfamily \#include $<$Sorter.\+hpp$>$}
+
+Inheritance diagram for Sorter\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sorter}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ int $>$ \mbox{\hyperlink{class_sorter_a2e534fb6a0eb756c2c315ed3c4ca8b6e}{sort}} (const std\+::vector$<$ int $>$ \&data) const =0
+\begin{DoxyCompactList}\small\item\em Sort a vector of integers. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{class_sorter_ab5485d46d40bf5f0d832b73e5026d1f1}{get\+Name}} () const =0
+\begin{DoxyCompactList}\small\item\em Human-\/readable name of this sorter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract interface for sorting algorithms. 
+
+Defines the contract that both sequential and parallel implementations must fulfil. Encapsulates the sorting strategy so callers are decoupled from the concrete algorithm. 
+
+\label{doc-func-members}
+\Hypertarget{class_sorter_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_sorter_ab5485d46d40bf5f0d832b73e5026d1f1}\index{Sorter@{Sorter}!getName@{getName}}
+\index{getName@{getName}!Sorter@{Sorter}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily \label{class_sorter_ab5485d46d40bf5f0d832b73e5026d1f1} 
+virtual std\+::string Sorter\+::get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Human-\/readable name of this sorter. 
+
+\begin{DoxyReturn}{Returns}
+Name string. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_parallel_merge_sort_aa54a1f25abcde6f6bfa0d3d0d3ccb2f2}{Parallel\+Merge\+Sort}}, and \mbox{\hyperlink{class_sequential_merge_sort_a4abbe3a45bd1ee5f266d415e2fbeabb7}{Sequential\+Merge\+Sort}}.
+
+\Hypertarget{class_sorter_a2e534fb6a0eb756c2c315ed3c4ca8b6e}\index{Sorter@{Sorter}!sort@{sort}}
+\index{sort@{sort}!Sorter@{Sorter}}
+\doxysubsubsection{\texorpdfstring{sort()}{sort()}}
+{\footnotesize\ttfamily \label{class_sorter_a2e534fb6a0eb756c2c315ed3c4ca8b6e} 
+virtual std\+::vector$<$ int $>$ Sorter\+::sort (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{data}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Sort a vector of integers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Input vector (not modified). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+New sorted vector. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_parallel_merge_sort_ad9a2251a2e23d7996981f780c9da1661}{Parallel\+Merge\+Sort}}, and \mbox{\hyperlink{class_sequential_merge_sort_af16357015953643a114ca051eafa1ac3}{Sequential\+Merge\+Sort}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+sort/\mbox{\hyperlink{_sorter_8hpp}{Sorter.\+hpp}}\end{DoxyCompactItemize}

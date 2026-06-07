@@ -1,0 +1,23 @@
+\doxysection{Sequential\+Merge\+Sort.\+hpp}
+\hypertarget{_sequential_merge_sort_8hpp_source}{}\label{_sequential_merge_sort_8hpp_source}\index{sort/SequentialMergeSort.hpp@{sort/SequentialMergeSort.hpp}}
+\mbox{\hyperlink{_sequential_merge_sort_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sorter_8hpp}{Sorter.hpp}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sequential_merge_sort}{SequentialMergeSort}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sorter}{Sorter}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{class_sequential_merge_sort_af16357015953643a114ca051eafa1ac3}{sort}}(\textcolor{keyword}{const}\ std::vector<int>\&\ data)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ std::string\ \mbox{\hyperlink{class_sequential_merge_sort_a4abbe3a45bd1ee5f266d415e2fbeabb7}{getName}}()\textcolor{keyword}{\ const\ override\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Sequential\ Merge\ Sort"{}};\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<int>\ \mbox{\hyperlink{class_sequential_merge_sort_ae3a6852826b364e86315980550a2eb54}{merge}}(\textcolor{keyword}{const}\ std::vector<int>\&\ left,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\&\ right);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00044\ \ \ \ \ std::vector<int>\ mergeSort(std::vector<int>\ data)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ \};}
+
+\end{DoxyCode}

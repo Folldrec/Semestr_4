@@ -1,0 +1,42 @@
+\doxysection{benchmarks/benchmark.cpp File Reference}
+\hypertarget{benchmark_8cpp}{}\label{benchmark_8cpp}\index{benchmarks/benchmark.cpp@{benchmarks/benchmark.cpp}}
+
+
+Benchmark sequential vs parallel merge sort.  
+
+
+{\ttfamily \#include "{}../sort/\+Sequential\+Merge\+Sort.\+hpp"{}}\newline
+{\ttfamily \#include "{}../sort/\+Parallel\+Merge\+Sort.\+hpp"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$numeric$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_row}{Row}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{benchmark_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{benchmark_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int {\bfseries main} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Benchmark sequential vs parallel merge sort. 
+
+Measures wall-\/clock time for various input sizes and thread counts, prints a table to stdout, and saves results to benchmarks/results.\+txt.
+
+Usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./benchmark}
+
+\end{DoxyCode}
+ 
