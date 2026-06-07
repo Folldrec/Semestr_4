@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Steam Analyzer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #f5f4f0;
+  --surface: #ffffff;
+  --border:  #d8d5ce;
+  --border2: #e8e5de;
+  --text:    #1a1a1a;
+  --muted:   #888880;
+  --accent:  #1a6bff;
+  --green:   #1a8a4a;
+  --red:     #cc2222;
+  --yellow:  #b87800;
+  --mono:    'IBM Plex Mono', monospace;
+  --sans:    'IBM Plex Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 14px;
+  min-height: 100vh;
+}
+
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .05em;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.logo-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: background .3s;
+}
+.logo-dot.online { background: #22cc66; }
+
+.nav {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+}
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 6px 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all .15s;
+}
+.nav-btn:hover { background: var(--bg); color: var(--text); }
+.nav-btn.active { background: var(--text); color: #fff; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: calc(100vh - 48px);
+}
+
+aside {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  color: var(--muted);
+  text-transform: uppercase;
+  padding: 0 8px;
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+.sidebar-label:first-child { margin-top: 0; }
+
+.input-wrap { position: relative; }
+.input-field {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text);
+  outline: none;
+  transition: border-color .15s;
+}
+.input-field:focus { border-color: var(--accent); }
+.input-field::placeholder { color: var(--muted); }
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 2px;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.checkbox-row input { accent-color: var(--accent); cursor: pointer; }
+
+.btn-primary {
+  width: 100%;
+  background: var(--text);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 9px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.btn-primary:hover { opacity: .82; }
+.btn-primary:disabled { opacity: .35; cursor: not-allowed; }
+
+.btn-ghost {
+  width: 100%;
+  background: none;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px;
+  font-family: var(--sans);
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color .15s;
+  text-align: center;
+}
+.btn-ghost:hover { border-color: var(--text); }
+
+.divider {
+  height: 1px;
+  background: var(--border2);
+  margin: 4px 0;
+}
+
+.loader {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  padding: 4px 2px;
+}
+.loader.active { display: flex; }
+.spin {
+  width: 14px; height: 14px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin .6s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.ids-list { display: flex; flex-direction: column; gap: 6px; }
+.id-row { display: flex; gap: 6px; }
+.id-row .input-field { flex: 1; }
+.remove-id {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0 8px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 12px;
+  transition: all .15s;
+}
+.remove-id:hover { border-color: var(--red); color: var(--red); }
+
+main {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.page { display: none; }
+.page.active { display: block; }
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: var(--muted);
+  gap: 12px;
+}
+.empty-icon {
+  font-size: 32px;
+  opacity: .4;
+}
+.empty-text {
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.player-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border2);
+}
+.player-avatar {
+  width: 48px; height: 48px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  object-fit: cover;
+}
+.player-avatar-ph {
+  width: 48px; height: 48px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.player-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+.player-id {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.steam-tag {
+  margin-left: auto;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .08em;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+.c-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.c-value {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text);
+}
+.c-sub {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.sec-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: 24px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border2);
+}
+
+.bar-chart {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bar-row {
+  display: grid;
+  grid-template-columns: 150px 1fr 60px;
+  align-items: center;
+  gap: 12px;
+}
+.bar-label {
+  font-size: 12px;
+  color: var(--text);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bar-track {
+  background: var(--bg);
+  border-radius: 3px;
+  height: 8px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  width: 0;
+  background: var(--accent);
+  transition: width 1s cubic-bezier(.22,1,.36,1);
+}
+.bar-val {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-align: right;
+}
+
+.tbl-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.tbl-scroll {
+  overflow-x: auto;
+  max-height: 480px;
+  overflow-y: auto;
+}
+.tbl-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+.tbl-scroll::-webkit-scrollbar-track { background: var(--bg); }
+.tbl-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  background: var(--bg);
+  color: var(--muted);
+  text-align: left;
+  padding: 8px 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid var(--border);
+}
+tbody td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border2);
+  font-size: 13px;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--bg); }
+
+.td-hours { font-family: var(--mono); font-size: 12px; color: var(--accent); font-weight: 500; }
+.td-ach   { font-family: var(--mono); font-size: 12px; color: var(--yellow); }
+.td-num   { color: var(--muted); font-family: var(--mono); font-size: 11px; }
+
+.badge {
+  display: inline-block;
+  padding: 1px 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: 10px;
+  color: var(--muted);
+  margin: 1px 2px 0 0;
+  font-family: var(--mono);
+}
+
+.del-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 4px;
+  padding: 2px 7px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: var(--mono);
+  transition: all .15s;
+}
+.del-btn:hover { border-color: var(--red); color: var(--red); }
+.row-deleted td { opacity: .35; text-decoration: line-through; }
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+}
+.cmp-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+.cmp-card h3 {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.cmp-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.cmp-name {
+  font-size: 12px;
+  flex: 0 0 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cmp-bar { flex: 1; }
+.cmp-val {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  flex: 0 0 48px;
+  text-align: right;
+}
+.crown {
+  display: inline-block;
+  font-size: 10px;
+  margin-left: 4px;
+}
+
+.toast-wrap {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.toast {
+  padding: 9px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: var(--mono);
+  animation: slideIn .2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+.toast.err { border-color: var(--red); color: var(--red); }
+.toast.ok  { border-color: var(--green); color: var(--green); }
+@keyframes slideIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; }
+  aside { border-right: none; border-bottom: 1px solid var(--border); }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-dot" id="statusDot"></div>
+    Steam Analyzer
+  </div>
+  <nav class="nav">
+    <button class="nav-btn active" onclick="switchPage('steam', this)">Профіль</button>
+    <button class="nav-btn" onclick="switchPage('compare', this)">Порівняння</button>
+  </nav>
+</header>
+
+<div class="layout">
+
+  <aside id="sidebar-steam">
+
+    <div class="sidebar-label">Steam ID</div>
+    <input class="input-field" id="steamInput" placeholder="SteamID або nickname"/>
+
+    <label class="checkbox-row">
+      <input type="checkbox" id="steamAch"/>
+      Завантажити досягнення
+    </label>
+
+    <button class="btn-primary" onclick="loadSteam()">Аналізувати</button>
+    <div class="loader" id="steamLoader"><div class="spin"></div><span>Завантаження...</span></div>
+
+  </aside>
+
+  <aside id="sidebar-compare" style="display:none">
+
+    <div class="sidebar-label">Гравці</div>
+    <div class="ids-list" id="compareIds">
+      <div class="id-row"><input class="input-field" placeholder="SteamID #1"/></div>
+      <div class="id-row"><input class="input-field" placeholder="SteamID #2"/></div>
+    </div>
+    <button class="btn-ghost" onclick="addCompareId()">+ Додати гравця</button>
+
+    <div class="divider"></div>
+    <button class="btn-primary" onclick="loadCompare()">Порівняти</button>
+    <div class="loader" id="compareLoader"><div class="spin"></div><span>Завантаження...</span></div>
+
+  </aside>
+
+  <main>
+
+    <div class="page active" id="page-steam">
+      <div class="empty" id="steamEmpty">
+        <div class="empty-icon">🎮</div>
+        <div class="empty-text">Введіть SteamID і натисніть «Аналізувати»</div>
+      </div>
+      <div id="steamResult" style="display:none"></div>
+    </div>
+
+    <div class="page" id="page-compare">
+      <div class="empty" id="compareEmpty">
+        <div class="empty-icon">⚔</div>
+        <div class="empty-text">Введіть мінімум 2 SteamID і натисніть «Порівняти»</div>
+      </div>
+      <div id="compareResult" style="display:none"></div>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+const API = 'http://localhost:8080';
+
+const COLORS = ['#1a6bff','#22aa66','#e05a00','#9933cc','#cc2244','#0099aa','#887700','#cc6600'];
+
+function switchPage(name, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('sidebar-steam').style.display   = name === 'steam'   ? '' : 'none';
+  document.getElementById('sidebar-compare').style.display = name === 'compare' ? '' : 'none';
+}
+
+async function checkStatus() {
+  try {
+    const r = await fetch(API + '/api/status');
+    if (r.ok) document.getElementById('statusDot').classList.add('online');
+  } catch {}
+}
+checkStatus();
+
+function toast(msg, type = 'ok') {
+  const w = document.getElementById('toastWrap');
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.textContent = msg;
+  w.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+function renderPlayerHeader(data) {
+  return `
+    <div class="player-header">
+      ${data.avatar
+        ? `<img class="player-avatar" src="${data.avatar}" onerror="this.style.display='none'">`
+        : `<div class="player-avatar-ph">🎮</div>`}
+      <div>
+        <div class="player-name">${data.name || '?'}</div>
+        <div class="player-id">${data.steamid || ''}</div>
+      </div>
+      <span class="steam-tag">STEAM</span>
+    </div>`;
+}
+
+function renderCards(data) {
+  return `
+    <div class="cards">
+      <div class="card">
+        <div class="c-label">Ігровий час</div>
+        <div class="c-value">${(data.total_hours || 0).toFixed(0)}</div>
+        <div class="c-sub">годин</div>
+      </div>
+      <div class="card">
+        <div class="c-label">Ігор</div>
+        <div class="c-value">${(data.games || []).length}</div>
+        <div class="c-sub">у бібліотеці</div>
+      </div>
+      <div class="card">
+        <div class="c-label">Досягнення</div>
+        <div class="c-value">${(data.ach_pct || 0).toFixed(1)}%</div>
+        <div class="c-sub">пройдено</div>
+      </div>
+      <div class="card">
+        <div class="c-label">Категорій</div>
+        <div class="c-value">${Object.keys(data.categories || {}).length}</div>
+        <div class="c-sub">жанрів</div>
+      </div>
+    </div>`;
+}
+
+function renderBarChart(categories) {
+  const entries = Object.entries(categories || {}).sort((a, b) => b[1] - a[1]);
+  if (!entries.length) return '';
+  const maxV = entries[0][1] || 1;
+  const bars = entries.map(([k, v], i) => `
+    <div class="bar-row">
+      <div class="bar-label">${k}</div>
+      <div class="bar-track">
+        <div class="bar-fill" data-w="${(v / maxV * 100).toFixed(1)}"
+          style="background:${COLORS[i % COLORS.length]}"></div>
+      </div>
+      <div class="bar-val">${v.toFixed(1)}h</div>
+    </div>`).join('');
+  return `
+    <div class="sec-title">Час за категоріями</div>
+    <div class="bar-chart">${bars}</div>`;
+}
+
+function animateBars(el) {
+  requestAnimationFrame(() => {
+    (el || document).querySelectorAll('.bar-fill').forEach(b => {
+      b.style.width = b.dataset.w + '%';
+    });
+  });
+}
+
+function renderGamesTable(games, steamid) {
+  if (!games || !games.length) return '';
+  const sorted = [...games].sort((a, b) => b.hours - a.hours);
+  const rows = sorted.map((g, i) => {
+    const genres = (g.genres || []).map(x => `<span class="badge">${x}</span>`).join('');
+    return `
+      <tr id="row-${g.appid}" class="${g.excluded ? 'row-deleted' : ''}">
+        <td class="td-num">${i + 1}</td>
+        <td>${g.name}</td>
+        <td>${genres || '<span style="color:var(--muted)">—</span>'}</td>
+        <td class="td-hours">${(g.hours || 0).toFixed(1)}h</td>
+        <td class="td-ach">${(g.ach_pct || 0).toFixed(1)}%</td>
+        <td><button class="del-btn" onclick="deleteGame(this)">✕</button></td>
+      </tr>`;
+  }).join('');
+
+  return `
+    <div class="sec-title">Бібліотека ігор</div>
+    <div class="tbl-wrap">
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr>
+            <th>#</th><th>Гра</th><th>Жанри</th>
+            <th>Годин</th><th>Ачів %</th><th></th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
+function deleteGame(btn) {
+  const row = btn.closest('tr');
+  row.classList.toggle('row-deleted');
+  btn.textContent = row.classList.contains('row-deleted') ? '↩' : '✕';
+
+  let total = 0;
+  btn.closest('tbody').querySelectorAll('tr:not(.row-deleted) .td-hours').forEach(td => {
+    total += parseFloat(td.textContent) || 0;
+  });
+  const card = document.querySelector('.c-value');
+  if (card) card.textContent = total.toFixed(0);
+}
+
+function renderProfile(data, container) {
+  container.innerHTML =
+    renderPlayerHeader(data) +
+    renderCards(data) +
+    renderBarChart(data.categories) +
+    renderGamesTable(data.games, data.steamid);
+  animateBars(container);
+}
+
+async function loadSteam() {
+  const id  = document.getElementById('steamInput').value.trim();
+  const ach = document.getElementById('steamAch').checked ? '1' : '0';
+  if (!id) { toast('Введіть SteamID', 'err'); return; }
+
+  const loader = document.getElementById('steamLoader');
+  const result = document.getElementById('steamResult');
+  const empty  = document.getElementById('steamEmpty');
+
+  loader.classList.add('active');
+  result.style.display = 'none';
+  empty.style.display  = 'none';
+
+  try {
+    const r = await fetch(`${API}/api/steam?steamid=${encodeURIComponent(id)}&achievements=${ach}`);
+    const data = await r.json();
+    if (data.error) throw new Error(data.error);
+    result.style.display = 'block';
+    renderProfile(data, result);
+    toast('Завантажено: ' + data.name);
+  } catch (e) {
+    empty.style.display = 'flex';
+    empty.innerHTML = `<div class="empty-icon">⚠</div><div class="empty-text">${e.message}</div>`;
+    toast(e.message, 'err');
+  } finally {
+    loader.classList.remove('active');
+  }
+}
+
+function addCompareId() {
+  const list = document.getElementById('compareIds');
+  const n = list.children.length + 1;
+  const row = document.createElement('div');
+  row.className = 'id-row';
+  row.innerHTML = `
+    <input class="input-field" placeholder="SteamID #${n}"/>
+    <button class="remove-id" onclick="this.closest('.id-row').remove()">✕</button>`;
+  list.appendChild(row);
+}
+
+async function loadCompare() {
+  const inputs = document.querySelectorAll('#compareIds .input-field');
+  const ids = [...inputs].map(i => i.value.trim()).filter(Boolean);
+  if (ids.length < 2) { toast('Потрібно мінімум 2 гравці', 'err'); return; }
+
+  const loader    = document.getElementById('compareLoader');
+  const loaderTxt = loader.querySelector('span');
+  const result    = document.getElementById('compareResult');
+  const empty     = document.getElementById('compareEmpty');
+
+  loader.classList.add('active');
+  result.style.display = 'none';
+  empty.style.display  = 'none';
+
+  let dot = 0;
+  const iv = setInterval(() => {
+    dot = (dot + 1) % 4;
+    if (loaderTxt) loaderTxt.textContent = 'Завантаження' + '.'.repeat(dot) + ' (30–60 сек)';
+  }, 600);
+
+  try {
+    const ctrl = new AbortController();
+    const tid  = setTimeout(() => ctrl.abort(), 180000);
+    const r    = await fetch(
+      `${API}/api/compare?steamids=${ids.map(encodeURIComponent).join(',')}`,
+      { signal: ctrl.signal }
+    );
+    clearTimeout(tid);
+
+    const data = await r.json();
+    if (data.error) throw new Error(data.error);
+    if (!Array.isArray(data) || !data.length)
+      throw new Error('Дані не завантажено. Перевірте SteamID та приватність.');
+
+    result.style.display = 'block';
+    renderComparison(data, result);
+    toast(`Порівняно ${data.length} гравців`);
+  } catch (e) {
+    const msg = e.name === 'AbortError' ? 'Timeout (>3 хв)' : e.message;
+    empty.style.display = 'flex';
+    empty.innerHTML = `<div class="empty-icon">⚠</div><div class="empty-text">${msg}</div>`;
+    toast(msg, 'err');
+  } finally {
+    clearInterval(iv);
+    loader.classList.remove('active');
+    if (loaderTxt) loaderTxt.textContent = 'Завантаження...';
+  }
+}
+
+function renderComparison(users, container) {
+  const allCats = new Set();
+  users.forEach(u => Object.keys(u.categories || {}).forEach(c => allCats.add(c)));
+
+  const catCards = [...allCats].map(cat => {
+    const entries = users
+      .map(u => ({ name: u.name, val: (u.categories || {})[cat] || 0 }))
+      .sort((a, b) => b.val - a.val);
+    const maxV   = entries[0].val || 1;
+    const winner = entries[0].name;
+
+    return `
+      <div class="cmp-card">
+        <h3>${catIcon(cat)} ${cat}</h3>
+        ${entries.map((e, i) => `
+          <div class="cmp-row">
+            <div class="cmp-name">${e.name}${e.name===winner&&e.val>0?'<span class="crown">👑</span>':''}</div>
+            <div class="cmp-bar">
+              <div class="bar-track" style="height:8px">
+                <div class="bar-fill" data-w="${(e.val/maxV*100).toFixed(1)}"
+                  style="height:8px;background:${COLORS[i%COLORS.length]}"></div>
+              </div>
+            </div>
+            <div class="cmp-val">${e.val.toFixed(1)}h</div>
+          </div>`).join('')}
+      </div>`;
+  });
+
+  const achSorted = [...users].sort((a, b) => b.ach_pct - a.ach_pct);
+  const maxAch    = achSorted[0].ach_pct || 1;
+  const achCard   = `
+    <div class="cmp-card">
+      <h3>🏅 Досягнення</h3>
+      ${achSorted.map((u, i) => `
+        <div class="cmp-row">
+          <div class="cmp-name">${u.name}${i===0?'<span class="crown">👑</span>':''}</div>
+          <div class="cmp-bar">
+            <div class="bar-track" style="height:8px">
+              <div class="bar-fill" data-w="${(u.ach_pct/maxAch*100).toFixed(1)}"
+                style="height:8px;background:${COLORS[i%COLORS.length]}"></div>
+            </div>
+          </div>
+          <div class="cmp-val">${u.ach_pct.toFixed(1)}%</div>
+        </div>`).join('')}
+    </div>`;
+
+  const totSorted = [...users].sort((a, b) => b.total_hours - a.total_hours);
+  const maxTot    = totSorted[0].total_hours || 1;
+  const totCard   = `
+    <div class="cmp-card">
+      <h3>⏱ Загальний час</h3>
+      ${totSorted.map((u, i) => `
+        <div class="cmp-row">
+          <div class="cmp-name">${u.name}${i===0?'<span class="crown">👑</span>':''}</div>
+          <div class="cmp-bar">
+            <div class="bar-track" style="height:8px">
+              <div class="bar-fill" data-w="${(u.total_hours/maxTot*100).toFixed(1)}"
+                style="height:8px;background:${COLORS[i%COLORS.length]}"></div>
+            </div>
+          </div>
+          <div class="cmp-val">${u.total_hours.toFixed(1)}h</div>
+        </div>`).join('')}
+    </div>`;
+
+  container.innerHTML = `
+    <div class="sec-title">Результати порівняння</div>
+    <div class="compare-grid">${achCard}${totCard}${catCards.join('')}</div>`;
+  animateBars(container);
+}
+
+function catIcon(cat) {
+  const m = {
+    'Шутери/Екшн':'🔫','Стратегії':'♟','РПГ':'⚔','Пригоди':'🗺',
+    'Симулятори':'🚀','Спорт':'⚽','Гонки':'🏎','Пазли':'🧩',
+    'Хорор':'👻','Інді':'🎨','ММО':'🌐','Мультиплеєр':'👥'
+  };
+  return m[cat] || '🎮';
+}
+
+document.getElementById('steamInput')
+  .addEventListener('keydown', e => e.key === 'Enter' && loadSteam());
+</script>
+</body>
+</html>
