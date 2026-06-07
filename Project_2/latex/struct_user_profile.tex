@@ -1,0 +1,91 @@
+\doxysection{User\+Profile Struct Reference}
+\hypertarget{struct_user_profile}{}\label{struct_user_profile}\index{UserProfile@{UserProfile}}
+
+
+Профіль Steam гравця з повною бібліотекою ігор.  
+
+
+
+
+{\ttfamily \#include $<$types.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{struct_user_profile_a691e710859f4d5341eee5375a00ce1af}{total\+\_\+hours}} () const
+\begin{DoxyCompactList}\small\item\em Сумарний ігровий час по всіх НЕвиключених іграх. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, double $>$ \mbox{\hyperlink{struct_user_profile_a97a3f93e7009a3460e8edc2fcc8219cb}{hours\+\_\+by\+\_\+category}} () const
+\begin{DoxyCompactList}\small\item\em Час гри по категоріях (жанрах). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{struct_user_profile_aa6963e926b4995ac2ae915569932d180}{overall\+\_\+achievement\+\_\+pct}} () const
+\begin{DoxyCompactList}\small\item\em Загальний відсоток досягнень по всій бібліотеці. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_user_profile_a4b38bdae0caedcff25fdf5514d8c5695}\label{struct_user_profile_a4b38bdae0caedcff25fdf5514d8c5695} 
+std\+::string {\bfseries steamid}
+\begin{DoxyCompactList}\small\item\em Steam\+ID64 гравця \end{DoxyCompactList}\item 
+\Hypertarget{struct_user_profile_a36c43eddcb01e2ad558e2df5909febb3}\label{struct_user_profile_a36c43eddcb01e2ad558e2df5909febb3} 
+std\+::string {\bfseries personaname}
+\begin{DoxyCompactList}\small\item\em Нікнейм гравця \end{DoxyCompactList}\item 
+\Hypertarget{struct_user_profile_a947e7d5f0f0180532ebef8fa220bc5c0}\label{struct_user_profile_a947e7d5f0f0180532ebef8fa220bc5c0} 
+std\+::string {\bfseries avatar}
+\begin{DoxyCompactList}\small\item\em URL повного аватара \end{DoxyCompactList}\item 
+\Hypertarget{struct_user_profile_a011df4b5be192fb2b75aa39bd02cf6f0}\label{struct_user_profile_a011df4b5be192fb2b75aa39bd02cf6f0} 
+std\+::vector$<$ \mbox{\hyperlink{struct_game}{Game}} $>$ {\bfseries games}
+\begin{DoxyCompactList}\small\item\em Список ігор (відсортований за часом). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Профіль Steam гравця з повною бібліотекою ігор. 
+
+Агрегує всі ігри гравця та надає методи для підрахунку статистики. 
+
+\label{doc-func-members}
+\Hypertarget{struct_user_profile_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_user_profile_a97a3f93e7009a3460e8edc2fcc8219cb}\index{UserProfile@{UserProfile}!hours\_by\_category@{hours\_by\_category}}
+\index{hours\_by\_category@{hours\_by\_category}!UserProfile@{UserProfile}}
+\doxysubsubsection{\texorpdfstring{hours\_by\_category()}{hours\_by\_category()}}
+{\footnotesize\ttfamily \label{struct_user_profile_a97a3f93e7009a3460e8edc2fcc8219cb} 
+std\+::map$<$ std\+::string, double $>$ User\+Profile\+::hours\+\_\+by\+\_\+category (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Час гри по категоріях (жанрах). 
+
+Кожен жанр гри зіставляється з GENRE\+\_\+\+MAP. Ігри без жанрів потрапляють у категорію "{}Інше"{}.
+
+\begin{DoxyReturn}{Returns}
+Словник \{ назва категорії → сумарні години \} 
+\end{DoxyReturn}
+\Hypertarget{struct_user_profile_aa6963e926b4995ac2ae915569932d180}\index{UserProfile@{UserProfile}!overall\_achievement\_pct@{overall\_achievement\_pct}}
+\index{overall\_achievement\_pct@{overall\_achievement\_pct}!UserProfile@{UserProfile}}
+\doxysubsubsection{\texorpdfstring{overall\_achievement\_pct()}{overall\_achievement\_pct()}}
+{\footnotesize\ttfamily \label{struct_user_profile_aa6963e926b4995ac2ae915569932d180} 
+double User\+Profile\+::overall\+\_\+achievement\+\_\+pct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Загальний відсоток досягнень по всій бібліотеці. 
+
+Вагується по кількості досягнень у кожній грі. \begin{DoxyReturn}{Returns}
+Відсоток (0..100), 0 якщо досягнень немає 
+\end{DoxyReturn}
+\Hypertarget{struct_user_profile_a691e710859f4d5341eee5375a00ce1af}\index{UserProfile@{UserProfile}!total\_hours@{total\_hours}}
+\index{total\_hours@{total\_hours}!UserProfile@{UserProfile}}
+\doxysubsubsection{\texorpdfstring{total\_hours()}{total\_hours()}}
+{\footnotesize\ttfamily \label{struct_user_profile_a691e710859f4d5341eee5375a00ce1af} 
+double User\+Profile\+::total\+\_\+hours (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Сумарний ігровий час по всіх НЕвиключених іграх. 
+
+\begin{DoxyReturn}{Returns}
+Години 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{types_8h}{types.\+h}}\end{DoxyCompactItemize}

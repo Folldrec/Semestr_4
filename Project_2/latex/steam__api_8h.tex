@@ -1,0 +1,152 @@
+\doxysection{steam\+\_\+api.\+h File Reference}
+\hypertarget{steam__api_8h}{}\label{steam__api_8h}\index{steam\_api.h@{steam\_api.h}}
+
+
+Функції для роботи зі Steam Web API та Steam Store API.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include "{}types.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{steam__api_8h_a143caf4c4e2dd67eef130a406b9cacdd}{resolve\+Steam\+ID}} (const std\+::string \&input)
+\begin{DoxyCompactList}\small\item\em Перетворює Vanity URL або Steam\+ID64 рядок на Steam\+ID64. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{steam__api_8h_ae86bcc14f4af2e34949ee0316da27b13}{fetch\+Player\+Summary}} (\mbox{\hyperlink{struct_user_profile}{User\+Profile}} \&user)
+\begin{DoxyCompactList}\small\item\em Завантажує ім\textquotesingle{}я та URL аватара гравця. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{steam__api_8h_ae98f63b864f7ac2c172638b864c5c109}{fetch\+Owned\+Games}} (\mbox{\hyperlink{struct_user_profile}{User\+Profile}} \&user)
+\begin{DoxyCompactList}\small\item\em Завантажує список усіх ігор гравця з часом гри. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{steam__api_8h_ad4487406faae92c2068b1d276ad9cb3f}{fetch\+Genres}} (\mbox{\hyperlink{struct_game}{Game}} \&game)
+\begin{DoxyCompactList}\small\item\em Завантажує жанри для однієї гри через Steam Store API. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{steam__api_8h_acfe4baf19b895e2f0ec0499d152d192d}{fetch\+Achievements}} (\mbox{\hyperlink{struct_game}{Game}} \&game, const std\+::string \&steamid)
+\begin{DoxyCompactList}\small\item\em Завантажує список досягнень гравця для однієї гри. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{steam__api_8h_a91421fb2264305519e062d2d6772b5d4}{export\+Json}} (const std\+::vector$<$ \mbox{\hyperlink{struct_user_profile}{User\+Profile}} $>$ \&users, const std\+::string \&filename="{}steam\+\_\+report.\+json"{})
+\begin{DoxyCompactList}\small\item\em Зберігає дані профілів у JSON файл. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Функції для роботи зі Steam Web API та Steam Store API. 
+
+Містить низькорівневі функції завантаження даних. Для зручнішого використання рекомендується \doxylink{class_profile_builder}{Profile\+Builder}.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_profile_builder}{Profile\+Builder}, Steam\+Provider 
+\end{DoxySeeAlso}
+
+
+\label{doc-func-members}
+\Hypertarget{steam__api_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{steam__api_8h_a91421fb2264305519e062d2d6772b5d4}\index{steam\_api.h@{steam\_api.h}!exportJson@{exportJson}}
+\index{exportJson@{exportJson}!steam\_api.h@{steam\_api.h}}
+\doxysubsubsection{\texorpdfstring{exportJson()}{exportJson()}}
+{\footnotesize\ttfamily \label{steam__api_8h_a91421fb2264305519e062d2d6772b5d4} 
+bool export\+Json (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_user_profile}{User\+Profile}} $>$ \&}]{users}{, }\item[{const std\+::string \&}]{filename}{ = {\ttfamily "{}steam\+\_\+report.json"{}}}\end{DoxyParamCaption})}
+
+
+
+Зберігає дані профілів у JSON файл. 
+
+Генерує steam\+\_\+report.\+json для використання в HTML дашборді.
+
+
+\begin{DoxyParams}{Parameters}
+{\em users} & Список профілів для збереження \\
+\hline
+{\em filename} & Шлях до файлу (за замовчуванням "{}steam\+\_\+report.\+json"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true при успішному записі 
+\end{DoxyReturn}
+\Hypertarget{steam__api_8h_acfe4baf19b895e2f0ec0499d152d192d}\index{steam\_api.h@{steam\_api.h}!fetchAchievements@{fetchAchievements}}
+\index{fetchAchievements@{fetchAchievements}!steam\_api.h@{steam\_api.h}}
+\doxysubsubsection{\texorpdfstring{fetchAchievements()}{fetchAchievements()}}
+{\footnotesize\ttfamily \label{steam__api_8h_acfe4baf19b895e2f0ec0499d152d192d} 
+void fetch\+Achievements (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game}{Game}} \&}]{game}{, }\item[{const std\+::string \&}]{steamid}{}\end{DoxyParamCaption})}
+
+
+
+Завантажує список досягнень гравця для однієї гри. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em game} & Гра — заповнює game.\+achievements \\
+\hline
+ & {\em steamid} & Steam\+ID64 гравця \\
+\hline
+\end{DoxyParams}
+\Hypertarget{steam__api_8h_ad4487406faae92c2068b1d276ad9cb3f}\index{steam\_api.h@{steam\_api.h}!fetchGenres@{fetchGenres}}
+\index{fetchGenres@{fetchGenres}!steam\_api.h@{steam\_api.h}}
+\doxysubsubsection{\texorpdfstring{fetchGenres()}{fetchGenres()}}
+{\footnotesize\ttfamily \label{steam__api_8h_ad4487406faae92c2068b1d276ad9cb3f} 
+void fetch\+Genres (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game}{Game}} \&}]{game}{}\end{DoxyParamCaption})}
+
+
+
+Завантажує жанри для однієї гри через Steam Store API. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em game} & Гра — заповнює game.\+genres \\
+\hline
+\end{DoxyParams}
+\Hypertarget{steam__api_8h_ae98f63b864f7ac2c172638b864c5c109}\index{steam\_api.h@{steam\_api.h}!fetchOwnedGames@{fetchOwnedGames}}
+\index{fetchOwnedGames@{fetchOwnedGames}!steam\_api.h@{steam\_api.h}}
+\doxysubsubsection{\texorpdfstring{fetchOwnedGames()}{fetchOwnedGames()}}
+{\footnotesize\ttfamily \label{steam__api_8h_ae98f63b864f7ac2c172638b864c5c109} 
+bool fetch\+Owned\+Games (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_user_profile}{User\+Profile}} \&}]{user}{}\end{DoxyParamCaption})}
+
+
+
+Завантажує список усіх ігор гравця з часом гри. 
+
+Заповнює user.\+games та сортує за playtime\+\_\+forever DESC.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em user} & Профіль з встановленим steamid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true при успіху, false якщо бібліотека закрита 
+\end{DoxyReturn}
+\Hypertarget{steam__api_8h_ae86bcc14f4af2e34949ee0316da27b13}\index{steam\_api.h@{steam\_api.h}!fetchPlayerSummary@{fetchPlayerSummary}}
+\index{fetchPlayerSummary@{fetchPlayerSummary}!steam\_api.h@{steam\_api.h}}
+\doxysubsubsection{\texorpdfstring{fetchPlayerSummary()}{fetchPlayerSummary()}}
+{\footnotesize\ttfamily \label{steam__api_8h_ae86bcc14f4af2e34949ee0316da27b13} 
+bool fetch\+Player\+Summary (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_user_profile}{User\+Profile}} \&}]{user}{}\end{DoxyParamCaption})}
+
+
+
+Завантажує ім\textquotesingle{}я та URL аватара гравця. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em user} & Заповнює user.\+personaname та user.\+avatar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true при успіху 
+\end{DoxyReturn}
+\Hypertarget{steam__api_8h_a143caf4c4e2dd67eef130a406b9cacdd}\index{steam\_api.h@{steam\_api.h}!resolveSteamID@{resolveSteamID}}
+\index{resolveSteamID@{resolveSteamID}!steam\_api.h@{steam\_api.h}}
+\doxysubsubsection{\texorpdfstring{resolveSteamID()}{resolveSteamID()}}
+{\footnotesize\ttfamily \label{steam__api_8h_a143caf4c4e2dd67eef130a406b9cacdd} 
+std\+::string resolve\+Steam\+ID (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input}{}\end{DoxyParamCaption})}
+
+
+
+Перетворює Vanity URL або Steam\+ID64 рядок на Steam\+ID64. 
+
+Якщо переданий рядок вже є 17-\/значним числом — повертає без API запиту.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & Vanity URL (наприклад "{}gaben"{}) або Steam\+ID64 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Steam\+ID64 рядок або порожній рядок при помилці 
+\end{DoxyReturn}

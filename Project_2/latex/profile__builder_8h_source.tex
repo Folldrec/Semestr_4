@@ -1,0 +1,28 @@
+\doxysection{profile\+\_\+builder.\+h}
+\hypertarget{profile__builder_8h_source}{}\label{profile__builder_8h_source}\mbox{\hyperlink{profile__builder_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }ProfileBuilder\ \{}
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ ProfileBuilder()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00050\ \ \ \ \ ProfileBuilder\&\ \mbox{\hyperlink{class_profile_builder_a69381f84d6536a715ce234c5941d8aaf}{steamId}}(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00057\ \ \ \ \ ProfileBuilder\&\ \mbox{\hyperlink{class_profile_builder_a875816fe6c93a4cd1bec5c245489afe4}{withGenres}}(\textcolor{keywordtype}{int}\ limit\ =\ 50);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00064\ \ \ \ \ ProfileBuilder\&\ \mbox{\hyperlink{class_profile_builder_ad7226ce47424e8b367bc834b0844eb47}{withAchievements}}(\textcolor{keywordtype}{int}\ limit\ =\ 30);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00078\ \ \ \ \ std::optional<UserProfile>\ \mbox{\hyperlink{class_profile_builder_abac25f0ef1d18d097a9c3d04736949ed}{build}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00081\ \ \ \ \ std::string\ steamId\_;}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ genreLimit\_\ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ achievementLimit\_\ =\ 0;}
+\DoxyCodeLine{00084\ \};}
+
+\end{DoxyCode}

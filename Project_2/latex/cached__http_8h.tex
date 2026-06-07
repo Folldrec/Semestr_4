@@ -1,0 +1,43 @@
+\doxysection{cached\+\_\+http.\+h File Reference}
+\hypertarget{cached__http_8h}{}\label{cached__http_8h}\index{cached\_http.h@{cached\_http.h}}
+
+
+Патерн Decorator — кешуючий HTTP клієнт.  
+
+
+{\ttfamily \#include "{}i\+\_\+http.\+h"{}}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_cached_http}{Cached\+Http}}
+\begin{DoxyCompactList}\small\item\em Декоратор що додає кешування до \doxylink{class_i_http}{IHttp}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Патерн Decorator — кешуючий HTTP клієнт. 
+
+Обгортає будь-\/яку реалізацію \doxylink{class_i_http}{IHttp} та додає кешування відповідей в пам\textquotesingle{}яті. При повторному запиті того самого URL повертає збережений результат без звернення до мережі.
+
+\begin{DoxyParagraph}{Патерн\+: Decorator (Структурний)}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Переваги\+: прискорює завантаження жанрів при порівнянні гравців}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Приклад\+:}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ http\ =\ std::make\_shared<CachedHttp>(}
+\DoxyCodeLine{\ \ \ \ std::make\_shared<BasicHttp>(),\ 500);}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ resp\ =\ http-\/>get(\textcolor{stringliteral}{"{}https://store.steampowered.com/..."{}});}
+\DoxyCodeLine{std::cout\ <<\ \textcolor{stringliteral}{"{}Hits:\ "{}}\ <<\ http-\/>hits();\ \textcolor{comment}{//\ кількість\ cache\ hits}}
+
+\end{DoxyCode}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_i_http}{IHttp}, \doxylink{i__http_8h}{i\+\_\+http.\+h} 
+\end{DoxySeeAlso}

@@ -1,0 +1,47 @@
+\doxysection{profile\+\_\+builder.\+h File Reference}
+\hypertarget{profile__builder_8h}{}\label{profile__builder_8h}\index{profile\_builder.h@{profile\_builder.h}}
+
+
+Патерн Builder для покрокової побудови \doxylink{struct_user_profile}{User\+Profile}.  
+
+
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$optional$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_profile_builder}{Profile\+Builder}}
+\begin{DoxyCompactList}\small\item\em Будівник профілю Steam гравця. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Патерн Builder для покрокової побудови \doxylink{struct_user_profile}{User\+Profile}. 
+
+Замість послідовного виклику кількох функцій steam\+\_\+api, \doxylink{class_profile_builder}{Profile\+Builder} дозволяє налаштувати які дані завантажувати і отримати готовий \doxylink{struct_user_profile}{User\+Profile} одним викликом build().
+
+\begin{DoxyParagraph}{Патерн\+: Builder (Створення)}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Приклад використання\+:}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Повний\ профіль}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ profile\ =\ \mbox{\hyperlink{class_profile_builder}{ProfileBuilder}}()}
+\DoxyCodeLine{\ \ \ \ .\mbox{\hyperlink{class_profile_builder_a69381f84d6536a715ce234c5941d8aaf}{steamId}}(\textcolor{stringliteral}{"{}gaben"{}})}
+\DoxyCodeLine{\ \ \ \ .\mbox{\hyperlink{class_profile_builder_a875816fe6c93a4cd1bec5c245489afe4}{withGenres}}(50)}
+\DoxyCodeLine{\ \ \ \ .\mbox{\hyperlink{class_profile_builder_ad7226ce47424e8b367bc834b0844eb47}{withAchievements}}(30)}
+\DoxyCodeLine{\ \ \ \ .\mbox{\hyperlink{class_profile_builder_abac25f0ef1d18d097a9c3d04736949ed}{build}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Швидкий\ профіль\ без\ досягнень}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ quick\ =\ \mbox{\hyperlink{class_profile_builder}{ProfileBuilder}}()}
+\DoxyCodeLine{\ \ \ \ .\mbox{\hyperlink{class_profile_builder_a69381f84d6536a715ce234c5941d8aaf}{steamId}}(\textcolor{keywordtype}{id})}
+\DoxyCodeLine{\ \ \ \ .\mbox{\hyperlink{class_profile_builder_a875816fe6c93a4cd1bec5c245489afe4}{withGenres}}(15)}
+\DoxyCodeLine{\ \ \ \ .\mbox{\hyperlink{class_profile_builder_abac25f0ef1d18d097a9c3d04736949ed}{build}}();}
+
+\end{DoxyCode}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+Steam\+Provider, \doxylink{steam__api_8h}{steam\+\_\+api.\+h} 
+\end{DoxySeeAlso}

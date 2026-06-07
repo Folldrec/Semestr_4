@@ -1,0 +1,35 @@
+\doxysection{cached\+\_\+http.\+h}
+\hypertarget{cached__http_8h_source}{}\label{cached__http_8h_source}\mbox{\hyperlink{cached__http_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{i__http_8h}{i\_http.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_cached_http_a50610dd3e50c7f16e20fd80ee62393f0}{CachedHttp}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_i_http}{IHttp}}\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_cached_http_a50610dd3e50c7f16e20fd80ee62393f0}{CachedHttp}}(std::shared\_ptr<IHttp>\ inner,\ \textcolor{keywordtype}{size\_t}\ maxSize\ =\ 500);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00051\ \ \ \ \ std::optional<std::string>\ \mbox{\hyperlink{class_cached_http_a9582806e47c085a305bd3d426c902cda}{get}}(\textcolor{keyword}{const}\ std::string\&\ url,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ timeout\ =\ 15)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_cached_http_a75808f99dc377a45e89f7b17880cd8e1}{cacheSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_cached_http_a47e9f9f7724bf869924c0b42412623d8}{clearCache}}();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_cached_http_a13954934243b7335bbc66609a2992f7a}{hits}}()\textcolor{keyword}{\ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ hits\_;\ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_cached_http_a55678377e1130ebd6915986789929e83}{misses}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ misses\_;\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00067\ \ \ \ \ std::shared\_ptr<IHttp>\ \ \ \ \ \ \ \ \ \ \ \ \ inner\_;\ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ std::map<std::string,\ std::string>\ cache\_;\ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{mutable}\ std::mutex\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mutex\_;\ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxSize\_;\ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hits\_\ \ \ =\ 0;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ misses\_\ =\ 0;}
+\DoxyCodeLine{00073\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,49 @@
+\doxysection{http.\+h File Reference}
+\hypertarget{http_8h}{}\label{http_8h}\index{http.h@{http.h}}
+
+
+Легковісний HTTP GET клієнт на основі libcurl.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$optional$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::optional$<$ std\+::string $>$ \mbox{\hyperlink{http_8h_a49305d386ce0c0992002f72670cc7737}{http\+Get}} (const std\+::string \&url, long timeout=15)
+\begin{DoxyCompactList}\small\item\em Виконує HTTP GET запит до вказаного URL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Легковісний HTTP GET клієнт на основі libcurl. 
+
+Частина патерну Decorator — Basic\+Http реалізує \doxylink{class_i_http}{IHttp}, \doxylink{class_cached_http}{Cached\+Http} обгортає його додаючи кешування.
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_i_http}{IHttp}, \doxylink{class_cached_http}{Cached\+Http} 
+\end{DoxySeeAlso}
+
+
+\label{doc-func-members}
+\Hypertarget{http_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{http_8h_a49305d386ce0c0992002f72670cc7737}\index{http.h@{http.h}!httpGet@{httpGet}}
+\index{httpGet@{httpGet}!http.h@{http.h}}
+\doxysubsubsection{\texorpdfstring{httpGet()}{httpGet()}}
+{\footnotesize\ttfamily \label{http_8h_a49305d386ce0c0992002f72670cc7737} 
+std\+::optional$<$ std\+::string $>$ http\+Get (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{url}{, }\item[{long}]{timeout}{ = {\ttfamily 15}}\end{DoxyParamCaption})}
+
+
+
+Виконує HTTP GET запит до вказаного URL. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em url} & Повний URL з параметрами запиту \\
+\hline
+{\em timeout} & Таймаут у секундах (за замовчуванням 15) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Тіло відповіді або std\+::nullopt при помилці мережі 
+\end{DoxyReturn}

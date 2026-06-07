@@ -1,0 +1,59 @@
+\doxysection{IHttp Class Reference}
+\hypertarget{class_i_http}{}\label{class_i_http}\index{IHttp@{IHttp}}
+
+
+Інтерфейс HTTP клієнта.  
+
+
+
+
+{\ttfamily \#include $<$i\+\_\+http.\+h$>$}
+
+Inheritance diagram for IHttp\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_i_http}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::optional$<$ std\+::string $>$ \mbox{\hyperlink{class_i_http_aee5f41262a72d0e7e9ccdd87bcf7c12f}{get}} (const std\+::string \&url, long timeout=15)=0
+\begin{DoxyCompactList}\small\item\em Виконує HTTP GET запит. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Інтерфейс HTTP клієнта. 
+
+\label{doc-func-members}
+\Hypertarget{class_i_http_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_i_http_aee5f41262a72d0e7e9ccdd87bcf7c12f}\index{IHttp@{IHttp}!get@{get}}
+\index{get@{get}!IHttp@{IHttp}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{class_i_http_aee5f41262a72d0e7e9ccdd87bcf7c12f} 
+virtual std\+::optional$<$ std\+::string $>$ IHttp\+::get (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{url}{, }\item[{long}]{timeout}{ = {\ttfamily 15}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Виконує HTTP GET запит. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em url} & Повний URL \\
+\hline
+{\em timeout} & Таймаут у секундах \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Тіло відповіді або nullopt при помилці 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_cached_http_a9582806e47c085a305bd3d426c902cda}{Cached\+Http}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{i__http_8h}{i\+\_\+http.\+h}}\end{DoxyCompactItemize}

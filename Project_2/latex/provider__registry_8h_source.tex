@@ -1,0 +1,30 @@
+\doxysection{provider\+\_\+registry.\+h}
+\hypertarget{provider__registry_8h_source}{}\label{provider__registry_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}i\_provider.h"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }ProviderRegistry\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{static}\ ProviderRegistry\&\ \mbox{\hyperlink{class_provider_registry_a9c37f95d364d855ff03646c27129b2a0}{instance}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_provider_registry_aa44f8b591cde9e352d58a2f868b58412}{add}}(std::unique\_ptr<IProvider>\ provider);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00051\ \ \ \ \ IProvider*\ \mbox{\hyperlink{class_provider_registry_aa8df9bf0d0dd791642c7d016739bd35d}{get}}(\textcolor{keyword}{const}\ std::string\&\ name)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::unique\_ptr<IProvider>>\&\ \mbox{\hyperlink{class_provider_registry_a6ca51eb0db060ab6eb18470a26787ece}{all}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ std::vector<IProvider*>\ \mbox{\hyperlink{class_provider_registry_ab1a8a7aa4a9add7ece1b86ed30bf53e1}{configured}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{class_provider_registry_ae7a1bfa33a72b3aeb7e7955fdef827d3}{names}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00063\ \ \ \ \ ProviderRegistry()\ =\ \textcolor{keywordflow}{default};\ }
+\DoxyCodeLine{00064\ \ \ \ \ std::vector<std::unique\_ptr<IProvider>>\ providers\_;}
+\DoxyCodeLine{00065\ \};}
+
+\end{DoxyCode}

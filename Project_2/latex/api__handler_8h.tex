@@ -1,0 +1,54 @@
+\doxysection{api\+\_\+handler.\+h File Reference}
+\hypertarget{api__handler_8h}{}\label{api__handler_8h}\index{api\_handler.h@{api\_handler.h}}
+
+
+Патерн Facade — реєстрація REST API маршрутів.  
+
+
+{\ttfamily \#include "{}server.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{api__handler_8h_a3b5907c0ca9fd68c97db4b08b0ddb38c}{register\+Api\+Routes}} (\mbox{\hyperlink{class_http_server}{Http\+Server}} \&server)
+\begin{DoxyCompactList}\small\item\em Реєструє всі /api/\texorpdfstring{$\ast$}{*} маршрути на сервері. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Патерн Facade — реєстрація REST API маршрутів. 
+
+Єдина точка входу для веб-\/інтерфейсу. Координує \doxylink{class_profile_builder}{Profile\+Builder}, ISort\+Strategy та steam\+\_\+api приховуючи внутрішню складність від браузера.
+
+\begin{DoxyParagraph}{Патерн\+: Facade (Структурний)}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Маршрути\+:}
+
+\begin{DoxyItemize}
+\item GET /api/status
+\item GET /api/steam?steamid=...\&achievements=0\texorpdfstring{$\vert$}{|}1\&sort=hours\texorpdfstring{$\vert$}{|}name\texorpdfstring{$\vert$}{|}achievements\texorpdfstring{$\vert$}{|}recent
+\item GET /api/compare?steamids=id1,id2,...
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_http_server}{Http\+Server}, \doxylink{class_profile_builder}{Profile\+Builder}, ISort\+Strategy 
+\end{DoxySeeAlso}
+
+
+\label{doc-func-members}
+\Hypertarget{api__handler_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{api__handler_8h_a3b5907c0ca9fd68c97db4b08b0ddb38c}\index{api\_handler.h@{api\_handler.h}!registerApiRoutes@{registerApiRoutes}}
+\index{registerApiRoutes@{registerApiRoutes}!api\_handler.h@{api\_handler.h}}
+\doxysubsubsection{\texorpdfstring{registerApiRoutes()}{registerApiRoutes()}}
+{\footnotesize\ttfamily \label{api__handler_8h_a3b5907c0ca9fd68c97db4b08b0ddb38c} 
+void register\+Api\+Routes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_http_server}{Http\+Server}} \&}]{server}{}\end{DoxyParamCaption})}
+
+
+
+Реєструє всі /api/\texorpdfstring{$\ast$}{*} маршрути на сервері. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em server} & HTTP сервер для реєстрації маршрутів \\
+\hline
+\end{DoxyParams}

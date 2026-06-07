@@ -1,0 +1,84 @@
+\doxysection{Provider\+Registry Class Reference}
+\hypertarget{class_provider_registry}{}\label{class_provider_registry}\index{ProviderRegistry@{ProviderRegistry}}
+
+
+Singleton реєстр провайдерів.  
+
+
+
+
+{\ttfamily \#include $<$provider\+\_\+registry.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_provider_registry_aa44f8b591cde9e352d58a2f868b58412}{add}} (std\+::unique\+\_\+ptr$<$ IProvider $>$ provider)
+\begin{DoxyCompactList}\small\item\em Додає провайдер до реєстру. \end{DoxyCompactList}\item 
+IProvider \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_provider_registry_aa8df9bf0d0dd791642c7d016739bd35d}{get}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Знаходить провайдер за назвою. \end{DoxyCompactList}\item 
+\Hypertarget{class_provider_registry_a6ca51eb0db060ab6eb18470a26787ece}\label{class_provider_registry_a6ca51eb0db060ab6eb18470a26787ece} 
+const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ IProvider $>$ $>$ \& {\bfseries all} () const
+\begin{DoxyCompactList}\small\item\em Всі зареєстровані провайдери \end{DoxyCompactList}\item 
+\Hypertarget{class_provider_registry_ab1a8a7aa4a9add7ece1b86ed30bf53e1}\label{class_provider_registry_ab1a8a7aa4a9add7ece1b86ed30bf53e1} 
+std\+::vector$<$ IProvider \texorpdfstring{$\ast$}{*} $>$ {\bfseries configured} () const
+\begin{DoxyCompactList}\small\item\em Тільки провайдери з is\+Configured() == true. \end{DoxyCompactList}\item 
+\Hypertarget{class_provider_registry_ae7a1bfa33a72b3aeb7e7955fdef827d3}\label{class_provider_registry_ae7a1bfa33a72b3aeb7e7955fdef827d3} 
+std\+::vector$<$ std\+::string $>$ {\bfseries names} () const
+\begin{DoxyCompactList}\small\item\em Список назв всіх провайдерів \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_provider_registry_a9c37f95d364d855ff03646c27129b2a0}\label{class_provider_registry_a9c37f95d364d855ff03646c27129b2a0} 
+static \mbox{\hyperlink{class_provider_registry}{Provider\+Registry}} \& {\bfseries instance} ()
+\begin{DoxyCompactList}\small\item\em Повертає єдиний екземпляр реєстру \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Singleton реєстр провайдерів. 
+
+\begin{DoxyParagraph}{Патерн\+: Singleton}
+
+\end{DoxyParagraph}
+
+
+\label{doc-func-members}
+\Hypertarget{class_provider_registry_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_provider_registry_aa44f8b591cde9e352d58a2f868b58412}\index{ProviderRegistry@{ProviderRegistry}!add@{add}}
+\index{add@{add}!ProviderRegistry@{ProviderRegistry}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily \label{class_provider_registry_aa44f8b591cde9e352d58a2f868b58412} 
+void Provider\+Registry\+::add (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ IProvider $>$}]{provider}{}\end{DoxyParamCaption})}
+
+
+
+Додає провайдер до реєстру. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em provider} & Унікальний вказівник на провайдер \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_provider_registry_aa8df9bf0d0dd791642c7d016739bd35d}\index{ProviderRegistry@{ProviderRegistry}!get@{get}}
+\index{get@{get}!ProviderRegistry@{ProviderRegistry}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{class_provider_registry_aa8df9bf0d0dd791642c7d016739bd35d} 
+IProvider \texorpdfstring{$\ast$}{*} Provider\+Registry\+::get (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption}) const}
+
+
+
+Знаходить провайдер за назвою. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Назва провайдера (наприклад "{}\+Steam"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Вказівник або nullptr якщо не знайдено 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+provider\+\_\+registry.\+h\end{DoxyCompactItemize}

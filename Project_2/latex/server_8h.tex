@@ -1,0 +1,59 @@
+\doxysection{server.\+h File Reference}
+\hypertarget{server_8h}{}\label{server_8h}\index{server.h@{server.h}}
+
+
+Простий кросплатформний HTTP/1.\+1 сервер.  
+
+
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_http_request}{Http\+Request}}
+\begin{DoxyCompactList}\small\item\em HTTP запит від клієнта (браузера). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_http_response}{Http\+Response}}
+\begin{DoxyCompactList}\small\item\em HTTP відповідь сервера. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_http_server}{Http\+Server}}
+\begin{DoxyCompactList}\small\item\em HTTP/1.\+1 сервер на сирих сокетах. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{server_8h_a710ccf90742f2cd4e1e2da0885694a96}\label{server_8h_a710ccf90742f2cd4e1e2da0885694a96} 
+using {\bfseries Route\+Handler} = std\+::function$<$\mbox{\hyperlink{struct_http_response}{Http\+Response}}(const \mbox{\hyperlink{struct_http_request}{Http\+Request}}\&)$>$
+\begin{DoxyCompactList}\small\item\em Тип обробника маршруту \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{server_8h_aa6bb27df9f8ad1a71c49f6c1eed5093b}\label{server_8h_aa6bb27df9f8ad1a71c49f6c1eed5093b} 
+\mbox{\hyperlink{struct_http_response}{Http\+Response}} {\bfseries make\+Json\+Response} (const std\+::string \&data, int code=200)
+\begin{DoxyCompactList}\small\item\em Створює JSON відповідь із заданим кодом \end{DoxyCompactList}\item 
+\Hypertarget{server_8h_ab9c4b8e33096b2937c1fbbb9f3910cc1}\label{server_8h_ab9c4b8e33096b2937c1fbbb9f3910cc1} 
+\mbox{\hyperlink{struct_http_response}{Http\+Response}} {\bfseries make\+Html\+Response} (const std\+::string \&data)
+\begin{DoxyCompactList}\small\item\em Створює HTML відповідь (для index.\+html). \end{DoxyCompactList}\item 
+\Hypertarget{server_8h_a08402ed562b39759fb5cb0ffaa2dbceb}\label{server_8h_a08402ed562b39759fb5cb0ffaa2dbceb} 
+\mbox{\hyperlink{struct_http_response}{Http\+Response}} {\bfseries make\+Error\+Response} (const std\+::string \&msg, int code=500)
+\begin{DoxyCompactList}\small\item\em Створює JSON відповідь з повідомленням про помилку \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Простий кросплатформний HTTP/1.\+1 сервер. 
+
+Реалізований на сирих сокетах (Winsock2 на Windows, POSIX на Linux/mac\+OS). Підтримує реєстрацію маршрутів та обробку запитів у окремих потоках.
+
+\begin{DoxyParagraph}{Використання\+:}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_http_server}{HttpServer}}\ server(8080);}
+\DoxyCodeLine{server.route(\textcolor{stringliteral}{"{}GET"{}},\ \textcolor{stringliteral}{"{}/api/hello"{}},\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_http_request}{HttpRequest}}\&\ req)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ makeJsonResponse(\textcolor{stringliteral}{"{}\{"{}}ok\textcolor{stringliteral}{"{}:true\}"{}});}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{server.run();\ \textcolor{comment}{//\ блокуючий\ виклик}}
+
+\end{DoxyCode}
+ 
+\end{DoxyParagraph}

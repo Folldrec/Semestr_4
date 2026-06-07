@@ -1,0 +1,98 @@
+\doxysection{types.\+h}
+\hypertarget{types_8h_source}{}\label{types_8h_source}\mbox{\hyperlink{types_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_achievement}{Achievement}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_achievement_a483445731a6a568f1aae7047bd49d0d9}{apiname}};\ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_achievement_a455c9c6b6924b5f8e9b19a2a706a01bd}{achieved}}\ \ \ \ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_achievement_a90852bf3e58693016b07b8fc94d7fd2a}{unlocktime}}\ \ =\ 0;\ \ \ \ \ }
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_game}{Game}}\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ uint64\_t\ \ \ \ \mbox{\hyperlink{struct_game_ac8d8b41cef0039c06eadf6afa73bb995}{appid}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 0;\ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_game_a7f9c64d3f7fd7694c544b4c68d72569d}{name}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_game_a1548277d34a887233f0c428cd928f388}{playtime\_forever}}\ =\ 0;\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_game_a77db865239f581ad53fef91a5fdf64b6}{playtime\_2weeks}}\ \ =\ 0;\ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_game_af1d52e685ba73bd1efe850b395385c79}{excluded}}\ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{struct_game_a39ed508d63a8c4be0d2ba9bcd823771f}{genres}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ std::vector<Achievement>\ \mbox{\hyperlink{struct_game_a11cded5ecb709c43200a9aacb481e6e6}{achievements}};\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{struct_game_ad3c89d826a2f5ad0120af4373c3389af}{hours}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_game_a1548277d34a887233f0c428cd928f388}{playtime\_forever}}\ /\ 60.0;}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_game_a842a6874dc680d3da1b41b759e650051}{achieved\_count}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ std::count\_if(\mbox{\hyperlink{struct_game_a11cded5ecb709c43200a9aacb481e6e6}{achievements}}.begin(),\ \mbox{\hyperlink{struct_game_a11cded5ecb709c43200a9aacb481e6e6}{achievements}}.end(),}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_achievement}{Achievement}}\&\ a)\{\ return\ a.achieved;\ \}));}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_game_ad0f84908dd9238c99a540d44abdc1dfb}{total\_achievements}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{struct_game_a11cded5ecb709c43200a9aacb481e6e6}{achievements}}.size());}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{struct_game_a703a6039910f0cb49291b3f97fbe4c97}{achievement\_pct}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{struct_game_ad0f84908dd9238c99a540d44abdc1dfb}{total\_achievements}}()\ ==\ 0)\ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 100.0\ *\ \mbox{\hyperlink{struct_game_a842a6874dc680d3da1b41b759e650051}{achieved\_count}}()\ /\ \mbox{\hyperlink{struct_game_ad0f84908dd9238c99a540d44abdc1dfb}{total\_achievements}}();}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_user_profile}{UserProfile}}\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_user_profile_a4b38bdae0caedcff25fdf5514d8c5695}{steamid}};\ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_user_profile_a36c43eddcb01e2ad558e2df5909febb3}{personaname}};\ \ }
+\DoxyCodeLine{00091\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_user_profile_a947e7d5f0f0180532ebef8fa220bc5c0}{avatar}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ std::vector<Game>\ \mbox{\hyperlink{struct_user_profile_a011df4b5be192fb2b75aa39bd02cf6f0}{games}};\ \ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{struct_user_profile_a691e710859f4d5341eee5375a00ce1af}{total\_hours}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ h\ =\ 0.0;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\ :\ \mbox{\hyperlink{struct_user_profile_a011df4b5be192fb2b75aa39bd02cf6f0}{games}})}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!g.excluded)\ h\ +=\ g.hours();}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ h;}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00113\ \ \ \ \ std::map<std::string,double>\ \mbox{\hyperlink{struct_user_profile_a97a3f93e7009a3460e8edc2fcc8219cb}{hours\_by\_category}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ std::map<std::string,double>\ result;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\ :\ \mbox{\hyperlink{struct_user_profile_a011df4b5be192fb2b75aa39bd02cf6f0}{games}})\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (g.excluded)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ std::set<std::string>\ seen;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ genre\ :\ g.genres)\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ label\ =\ \textcolor{stringliteral}{"{}Інше"{}};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [kw,\ lbl]\ :\ \mbox{\hyperlink{config_8h_afa8c9f6c47c6046d4e8449e03d45b72c}{GENRE\_MAP}})}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (genre.find(kw)\ !=\ std::string::npos)\ \{\ label\ =\ lbl;\ \textcolor{keywordflow}{break};\ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!seen.count(label))\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result[label]\ +=\ g.hours();}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seen.insert(label);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (g.genres.empty())\ result[\textcolor{stringliteral}{"{}Інше"{}}]\ +=\ g.hours();}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{struct_user_profile_aa6963e926b4995ac2ae915569932d180}{overall\_achievement\_pct}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ total\ =\ 0,\ done\ =\ 0;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\ :\ \mbox{\hyperlink{struct_user_profile_a011df4b5be192fb2b75aa39bd02cf6f0}{games}})\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (g.excluded)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ total\ +=\ g.total\_achievements();}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ done\ \ +=\ g.achieved\_count();}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (total\ ==\ 0)\ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 100.0\ *\ done\ /\ total;}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \};}
+
+\end{DoxyCode}

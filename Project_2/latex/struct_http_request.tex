@@ -1,0 +1,34 @@
+\doxysection{Http\+Request Struct Reference}
+\hypertarget{struct_http_request}{}\label{struct_http_request}\index{HttpRequest@{HttpRequest}}
+
+
+HTTP запит від клієнта (браузера).  
+
+
+
+
+{\ttfamily \#include $<$server.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_http_request_a7932a5cbb2edde60e5bc9950bca8569c}\label{struct_http_request_a7932a5cbb2edde60e5bc9950bca8569c} 
+std\+::string {\bfseries method}
+\begin{DoxyCompactList}\small\item\em HTTP метод\+: "{}\+GET"{}, "{}\+POST"{}. \end{DoxyCompactList}\item 
+\Hypertarget{struct_http_request_a7ae4a6b64b8b890a4fe81c53a76e8a51}\label{struct_http_request_a7ae4a6b64b8b890a4fe81c53a76e8a51} 
+std\+::string {\bfseries path}
+\begin{DoxyCompactList}\small\item\em Шлях запиту\+: "{}/api/steam"{}. \end{DoxyCompactList}\item 
+\Hypertarget{struct_http_request_a61d8ed5d589f27f751832a9e08940e02}\label{struct_http_request_a61d8ed5d589f27f751832a9e08940e02} 
+std\+::string {\bfseries body}
+\begin{DoxyCompactList}\small\item\em Тіло запиту (для POST). \end{DoxyCompactList}\item 
+\Hypertarget{struct_http_request_a669079539b0fc658aa5153b218b5bc20}\label{struct_http_request_a669079539b0fc658aa5153b218b5bc20} 
+std\+::map$<$ std\+::string, std\+::string $>$ {\bfseries params}
+\begin{DoxyCompactList}\small\item\em Query параметри\+: ?key=value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+HTTP запит від клієнта (браузера). 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{server_8h}{server.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,112 @@
+\doxysection{Profile\+Builder Class Reference}
+\hypertarget{class_profile_builder}{}\label{class_profile_builder}\index{ProfileBuilder@{ProfileBuilder}}
+
+
+Будівник профілю Steam гравця.  
+
+
+
+
+{\ttfamily \#include $<$profile\+\_\+builder.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_profile_builder}{Profile\+Builder}} \& \mbox{\hyperlink{class_profile_builder_a69381f84d6536a715ce234c5941d8aaf}{steam\+Id}} (const std\+::string \&id)
+\begin{DoxyCompactList}\small\item\em Встановлює Steam\+ID або Custom URL гравця. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_profile_builder}{Profile\+Builder}} \& \mbox{\hyperlink{class_profile_builder_a875816fe6c93a4cd1bec5c245489afe4}{with\+Genres}} (int limit=50)
+\begin{DoxyCompactList}\small\item\em Налаштовує завантаження жанрів. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_profile_builder}{Profile\+Builder}} \& \mbox{\hyperlink{class_profile_builder_ad7226ce47424e8b367bc834b0844eb47}{with\+Achievements}} (int limit=30)
+\begin{DoxyCompactList}\small\item\em Налаштовує завантаження досягнень. \end{DoxyCompactList}\item 
+std\+::optional$<$ \mbox{\hyperlink{struct_user_profile}{User\+Profile}} $>$ \mbox{\hyperlink{class_profile_builder_abac25f0ef1d18d097a9c3d04736949ed}{build}} () const
+\begin{DoxyCompactList}\small\item\em Виконує всі налаштовані кроки і повертає \doxylink{struct_user_profile}{User\+Profile}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Будівник профілю Steam гравця. 
+
+Реалізує патерн Builder — дозволяє покроково налаштувати які дані завантажувати та отримати \doxylink{struct_user_profile}{User\+Profile} через \doxylink{class_profile_builder_abac25f0ef1d18d097a9c3d04736949ed}{build()}. 
+
+\label{doc-func-members}
+\Hypertarget{class_profile_builder_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_profile_builder_abac25f0ef1d18d097a9c3d04736949ed}\index{ProfileBuilder@{ProfileBuilder}!build@{build}}
+\index{build@{build}!ProfileBuilder@{ProfileBuilder}}
+\doxysubsubsection{\texorpdfstring{build()}{build()}}
+{\footnotesize\ttfamily \label{class_profile_builder_abac25f0ef1d18d097a9c3d04736949ed} 
+std\+::optional$<$ \mbox{\hyperlink{struct_user_profile}{User\+Profile}} $>$ Profile\+Builder\+::build (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Виконує всі налаштовані кроки і повертає \doxylink{struct_user_profile}{User\+Profile}. 
+
+Кроки виконуються в порядку\+:
+\begin{DoxyEnumerate}
+\item resolve\+Steam\+ID
+\item fetch\+Player\+Summary
+\item fetch\+Owned\+Games 4a. fetch\+Genres (якщо with\+Genres \texorpdfstring{$>$}{>} 0) 4b. fetch\+Achievements (якщо with\+Achievements \texorpdfstring{$>$}{>} 0)
+\end{DoxyEnumerate}
+
+\begin{DoxyReturn}{Returns}
+Заповнений профіль або std\+::nullopt при помилці 
+\end{DoxyReturn}
+\Hypertarget{class_profile_builder_a69381f84d6536a715ce234c5941d8aaf}\index{ProfileBuilder@{ProfileBuilder}!steamId@{steamId}}
+\index{steamId@{steamId}!ProfileBuilder@{ProfileBuilder}}
+\doxysubsubsection{\texorpdfstring{steamId()}{steamId()}}
+{\footnotesize\ttfamily \label{class_profile_builder_a69381f84d6536a715ce234c5941d8aaf} 
+\mbox{\hyperlink{class_profile_builder}{Profile\+Builder}} \& Profile\+Builder\+::steam\+Id (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Встановлює Steam\+ID або Custom URL гравця. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Steam\+ID64 або vanity name (наприклад "{}gaben"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Посилання на this для fluent API 
+\end{DoxyReturn}
+\Hypertarget{class_profile_builder_ad7226ce47424e8b367bc834b0844eb47}\index{ProfileBuilder@{ProfileBuilder}!withAchievements@{withAchievements}}
+\index{withAchievements@{withAchievements}!ProfileBuilder@{ProfileBuilder}}
+\doxysubsubsection{\texorpdfstring{withAchievements()}{withAchievements()}}
+{\footnotesize\ttfamily \label{class_profile_builder_ad7226ce47424e8b367bc834b0844eb47} 
+\mbox{\hyperlink{class_profile_builder}{Profile\+Builder}} \& Profile\+Builder\+::with\+Achievements (\begin{DoxyParamCaption}\item[{int}]{limit}{ = {\ttfamily 30}}\end{DoxyParamCaption})}
+
+
+
+Налаштовує завантаження досягнень. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em limit} & Кількість ігор для яких завантажувати досягнення (0 = вимкнено) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Посилання на this для fluent API 
+\end{DoxyReturn}
+\Hypertarget{class_profile_builder_a875816fe6c93a4cd1bec5c245489afe4}\index{ProfileBuilder@{ProfileBuilder}!withGenres@{withGenres}}
+\index{withGenres@{withGenres}!ProfileBuilder@{ProfileBuilder}}
+\doxysubsubsection{\texorpdfstring{withGenres()}{withGenres()}}
+{\footnotesize\ttfamily \label{class_profile_builder_a875816fe6c93a4cd1bec5c245489afe4} 
+\mbox{\hyperlink{class_profile_builder}{Profile\+Builder}} \& Profile\+Builder\+::with\+Genres (\begin{DoxyParamCaption}\item[{int}]{limit}{ = {\ttfamily 50}}\end{DoxyParamCaption})}
+
+
+
+Налаштовує завантаження жанрів. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em limit} & Кількість ігор для яких завантажувати жанри (0 = вимкнено) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Посилання на this для fluent API 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{profile__builder_8h}{profile\+\_\+builder.\+h}}\item 
+profile\+\_\+builder.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,84 @@
+\doxysection{Http\+Server Class Reference}
+\hypertarget{class_http_server}{}\label{class_http_server}\index{HttpServer@{HttpServer}}
+
+
+HTTP/1.\+1 сервер на сирих сокетах.  
+
+
+
+
+{\ttfamily \#include $<$server.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_http_server_ab55433b381a50bddf49cf6cb8d64a703}{Http\+Server}} (int port=8080)
+\begin{DoxyCompactList}\small\item\em Конструктор. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_http_server_a3eaec2fea369bc17e06ee8eb4cf241ac}{route}} (const std\+::string \&method, const std\+::string \&path, \mbox{\hyperlink{server_8h_a710ccf90742f2cd4e1e2da0885694a96}{Route\+Handler}} handler)
+\begin{DoxyCompactList}\small\item\em Реєструє обробник для HTTP маршруту. \end{DoxyCompactList}\item 
+\Hypertarget{class_http_server_af65c0e8b0169f2dc5a94d8bc84430576}\label{class_http_server_af65c0e8b0169f2dc5a94d8bc84430576} 
+void {\bfseries run} ()
+\begin{DoxyCompactList}\small\item\em Запускає сервер (блокуючий виклик до \doxylink{class_http_server_aad9c63d3f8cda248e3c87067ac3ac5a5}{stop()}). \end{DoxyCompactList}\item 
+\Hypertarget{class_http_server_aad9c63d3f8cda248e3c87067ac3ac5a5}\label{class_http_server_aad9c63d3f8cda248e3c87067ac3ac5a5} 
+void {\bfseries stop} ()
+\begin{DoxyCompactList}\small\item\em Зупиняє сервер \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+HTTP/1.\+1 сервер на сирих сокетах. 
+
+Кожен клієнт обробляється у окремому std\+::thread. Реєстрація маршрутів через метод \doxylink{class_http_server_a3eaec2fea369bc17e06ee8eb4cf241ac}{route()}.
+
+\begin{DoxyNote}{Note}
+Частина патерну Facade — приховує деталі сокетів від api\+\_\+handler. 
+\end{DoxyNote}
+
+
+\label{doc-constructors}
+\Hypertarget{class_http_server_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_http_server_ab55433b381a50bddf49cf6cb8d64a703}\index{HttpServer@{HttpServer}!HttpServer@{HttpServer}}
+\index{HttpServer@{HttpServer}!HttpServer@{HttpServer}}
+\doxysubsubsection{\texorpdfstring{HttpServer()}{HttpServer()}}
+{\footnotesize\ttfamily \label{class_http_server_ab55433b381a50bddf49cf6cb8d64a703} 
+Http\+Server\+::\+Http\+Server (\begin{DoxyParamCaption}\item[{int}]{port}{ = {\ttfamily 8080}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Конструктор. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & Порт прослуховування (за замовчуванням 8080) \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_http_server_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_http_server_a3eaec2fea369bc17e06ee8eb4cf241ac}\index{HttpServer@{HttpServer}!route@{route}}
+\index{route@{route}!HttpServer@{HttpServer}}
+\doxysubsubsection{\texorpdfstring{route()}{route()}}
+{\footnotesize\ttfamily \label{class_http_server_a3eaec2fea369bc17e06ee8eb4cf241ac} 
+void Http\+Server\+::route (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{method}{, }\item[{const std\+::string \&}]{path}{, }\item[{\mbox{\hyperlink{server_8h_a710ccf90742f2cd4e1e2da0885694a96}{Route\+Handler}}}]{handler}{}\end{DoxyParamCaption})}
+
+
+
+Реєструє обробник для HTTP маршруту. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em method} & HTTP метод ("{}\+GET"{}, "{}\+POST"{}) \\
+\hline
+{\em path} & Шлях маршруту ("{}/api/steam"{}) \\
+\hline
+{\em handler} & Функція-\/обробник \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{server_8h}{server.\+h}}\item 
+server.\+cpp\end{DoxyCompactItemize}

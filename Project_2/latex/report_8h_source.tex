@@ -1,0 +1,31 @@
+\doxysection{report.\+h}
+\hypertarget{report_8h_source}{}\label{report_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }Color\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\ RESET\ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[0m"{}};}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\ BOLD\ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[1m"{}};}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\ CYAN\ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[36m"{}};}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\ GREEN\ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[32m"{}};}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\ YELLOW\ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[33m"{}};}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\ RED\ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[31m"{}};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\ BLUE\ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[34m"{}};}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\ MAG\ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[35m"{}};}
+\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{void}\ printHeader(\textcolor{keyword}{const}\ std::string\&\ title);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ printBar(\textcolor{keyword}{const}\ std::string\&\ label,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ value,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ maxVal,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ width\ =\ 30);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{void}\ reportUser(\mbox{\hyperlink{struct_user_profile}{UserProfile}}\&\ user);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{void}\ reportComparison(std::vector<UserProfile>\&\ users);}
+
+\end{DoxyCode}

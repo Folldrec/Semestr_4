@@ -1,0 +1,98 @@
+\doxysection{Cached\+Http Class Reference}
+\hypertarget{class_cached_http}{}\label{class_cached_http}\index{CachedHttp@{CachedHttp}}
+
+
+Декоратор що додає кешування до \doxylink{class_i_http}{IHttp}.  
+
+
+
+
+{\ttfamily \#include $<$cached\+\_\+http.\+h$>$}
+
+Inheritance diagram for Cached\+Http\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_cached_http}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_cached_http_a50610dd3e50c7f16e20fd80ee62393f0}{Cached\+Http}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_i_http}{IHttp}} $>$ inner, size\+\_\+t max\+Size=500)
+\begin{DoxyCompactList}\small\item\em Конструктор. \end{DoxyCompactList}\item 
+std\+::optional$<$ std\+::string $>$ \mbox{\hyperlink{class_cached_http_a9582806e47c085a305bd3d426c902cda}{get}} (const std\+::string \&url, long timeout=15) override
+\begin{DoxyCompactList}\small\item\em Виконує запит або повертає кешований результат. \end{DoxyCompactList}\item 
+\Hypertarget{class_cached_http_a75808f99dc377a45e89f7b17880cd8e1}\label{class_cached_http_a75808f99dc377a45e89f7b17880cd8e1} 
+size\+\_\+t {\bfseries cache\+Size} () const
+\begin{DoxyCompactList}\small\item\em Поточна кількість записів у кеші \end{DoxyCompactList}\item 
+\Hypertarget{class_cached_http_a47e9f9f7724bf869924c0b42412623d8}\label{class_cached_http_a47e9f9f7724bf869924c0b42412623d8} 
+void {\bfseries clear\+Cache} ()
+\begin{DoxyCompactList}\small\item\em Очищає весь кеш \end{DoxyCompactList}\item 
+\Hypertarget{class_cached_http_a13954934243b7335bbc66609a2992f7a}\label{class_cached_http_a13954934243b7335bbc66609a2992f7a} 
+size\+\_\+t {\bfseries hits} () const
+\begin{DoxyCompactList}\small\item\em Кількість cache hits (запитів що повернули кешований результат). \end{DoxyCompactList}\item 
+\Hypertarget{class_cached_http_a55678377e1130ebd6915986789929e83}\label{class_cached_http_a55678377e1130ebd6915986789929e83} 
+size\+\_\+t {\bfseries misses} () const
+\begin{DoxyCompactList}\small\item\em Кількість cache misses (реальних мережевих запитів). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Декоратор що додає кешування до \doxylink{class_i_http}{IHttp}. 
+
+Thread-\/safe реалізація через std\+::mutex. При переповненні кешу видаляє найстаріший запис. 
+
+\label{doc-constructors}
+\Hypertarget{class_cached_http_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_cached_http_a50610dd3e50c7f16e20fd80ee62393f0}\index{CachedHttp@{CachedHttp}!CachedHttp@{CachedHttp}}
+\index{CachedHttp@{CachedHttp}!CachedHttp@{CachedHttp}}
+\doxysubsubsection{\texorpdfstring{CachedHttp()}{CachedHttp()}}
+{\footnotesize\ttfamily \label{class_cached_http_a50610dd3e50c7f16e20fd80ee62393f0} 
+Cached\+Http\+::\+Cached\+Http (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_i_http}{IHttp}} $>$}]{inner}{, }\item[{size\+\_\+t}]{max\+Size}{ = {\ttfamily 500}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Конструктор. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inner} & Реальний HTTP клієнт (декорується) \\
+\hline
+{\em max\+Size} & Максимальна кількість записів у кеші (за замовчуванням 500) \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_cached_http_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_cached_http_a9582806e47c085a305bd3d426c902cda}\index{CachedHttp@{CachedHttp}!get@{get}}
+\index{get@{get}!CachedHttp@{CachedHttp}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{class_cached_http_a9582806e47c085a305bd3d426c902cda} 
+std\+::optional$<$ std\+::string $>$ Cached\+Http\+::get (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{url}{, }\item[{long}]{timeout}{ = {\ttfamily 15}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Виконує запит або повертає кешований результат. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em url} & URL запиту \\
+\hline
+{\em timeout} & Таймаут у секундах \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Тіло відповіді або nullopt при помилці 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_i_http_aee5f41262a72d0e7e9ccdd87bcf7c12f}{IHttp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{cached__http_8h}{cached\+\_\+http.\+h}}\item 
+cached\+\_\+http.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,47 @@
+\chapter{Profile Analyzer }
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Profile Analyzer@{Profile Analyzer}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Підтримувані платформи}{Підтримувані платформи}}\label{md__r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Провайдер  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Що збирається  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Ключ  \\
+{\bfseries{Steam}}  &Бібліотека, час, жанри, досягнення  &\mbox{[}steamcommunity.\+com/dev/apikey\mbox{]}(D83\+A8\+B40\+B5\+C979\+F0876040\+B67\+E256\+B13)  \\
+\end{DoxyTable}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Структура проекту}{Структура проекту}}\label{md__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{steam\_analyzer/}
+\DoxyCodeLine{├──\ config.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ←\ ВСІ\ ключі\ API\ та\ ліміти}
+\DoxyCodeLine{├──\ types.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ←\ Achievement,\ Game,\ UserProfile}
+\DoxyCodeLine{├──\ http.h\ /\ http.cpp\ \ \ \ \ \ \ \ \ \ \ ←\ HTTP-\/клієнт\ (libcurl)}
+\DoxyCodeLine{├──\ steam\_api.h\ /\ steam\_api.cpp\ ←\ Steam\ Web\ API}
+\DoxyCodeLine{├──\ report.h\ /\ report.cpp\ \ \ \ \ \ \ ←\ Термінальний\ вивід\ (Steam)}
+\DoxyCodeLine{├──\ main.cpp\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ←\ Точка\ входу\ +\ registerProviders()}
+\DoxyCodeLine{├──\ CMakeLists.txt}
+\DoxyCodeLine{│}
+\DoxyCodeLine{└──\ providers/}
+\DoxyCodeLine{\ \ \ \ ├──\ i\_provider.h\ \ \ \ \ \ \ \ \ \ \ \ ←\ Абстрактний\ інтерфейс\ IProvider}
+\DoxyCodeLine{\ \ \ \ ├──\ provider\_registry.h/cpp\ ←\ Singleton-\/реєстр\ провайдерів}
+\DoxyCodeLine{\ \ \ \ ├──\ provider\_report.h/cpp\ \ \ ←\ Звіти\ для\ зовнішніх\ провайдерів}
+\DoxyCodeLine{\ \ \ \ ├──\ riot\_provider.h/cpp\ \ \ \ \ ←\ Riot\ Games\ API}
+\DoxyCodeLine{\ \ \ \ └──\ epic\_provider.h/cpp\ \ \ \ \ ←\ Epic\ Games\ Store\ API}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{\texorpdfstring{Налаштування ключів (config.\+h)}{Налаштування ключів (config.\+h)}}\label{md__r_e_a_d_m_e_autotoc_md3}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Steam}}
+\DoxyCodeLine{\textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{config_8h_a93a5cde4b196b4342ac7ad97bbf12ce8}{API\_KEY}}\ =\ \textcolor{stringliteral}{"{}ВАШ\_STEAM\_КЛЮЧ"{}};}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{\texorpdfstring{Збірка}{Збірка}}\label{md__r_e_a_d_m_e_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ steam\_analyzer}
+\DoxyCodeLine{cmake\ -\/B\ build}
+\DoxyCodeLine{cmake\ -\/-\/build\ build}
+\DoxyCodeLine{./build/game\_analyzer}
+
+\end{DoxyCode}
+ 

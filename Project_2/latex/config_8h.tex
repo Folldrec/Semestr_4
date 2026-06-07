@@ -1,0 +1,75 @@
+\doxysection{config.\+h File Reference}
+\hypertarget{config_8h}{}\label{config_8h}\index{config.h@{config.h}}
+
+
+Глобальна конфігурація\+: API ключі, маппінг жанрів, ліміти.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{config_8h_a93a5cde4b196b4342ac7ad97bbf12ce8}\label{config_8h_a93a5cde4b196b4342ac7ad97bbf12ce8} 
+const std\+::string {\bfseries API\+\_\+\+KEY} = "{}D83\+A8\+B40\+B5\+C979\+F0876040\+B67\+E256\+B13"{}
+\begin{DoxyCompactList}\small\item\em Steam Web API ключ. \end{DoxyCompactList}\item 
+const std\+::vector$<$ std\+::pair$<$ std\+::string, std\+::string $>$ $>$ \mbox{\hyperlink{config_8h_afa8c9f6c47c6046d4e8449e03d45b72c}{GENRE\+\_\+\+MAP}}
+\begin{DoxyCompactList}\small\item\em Маппінг ключових слів жанрів Steam → українські назви категорій. \end{DoxyCompactList}\item 
+\Hypertarget{config_8h_ab196524b89367246e907e50626693d37}\label{config_8h_ab196524b89367246e907e50626693d37} 
+constexpr int {\bfseries MAX\+\_\+\+GENRE\+\_\+\+FETCH} = 50
+\begin{DoxyCompactList}\small\item\em Максимальна кількість ігор для завантаження жанрів \end{DoxyCompactList}\item 
+\Hypertarget{config_8h_ab6e7b9d0b9a8d9cc74eb4297143280ed}\label{config_8h_ab6e7b9d0b9a8d9cc74eb4297143280ed} 
+constexpr int {\bfseries MAX\+\_\+\+ACHIEVEMENT\+\_\+\+FETCH} = 30
+\begin{DoxyCompactList}\small\item\em Максимальна кількість ігор для завантаження досягнень \end{DoxyCompactList}\item 
+\Hypertarget{config_8h_a0459f72d078d2031f360f2ae91a9461d}\label{config_8h_a0459f72d078d2031f360f2ae91a9461d} 
+constexpr int {\bfseries TOP\+\_\+\+GAMES\+\_\+\+DISPLAY} = 20
+\begin{DoxyCompactList}\small\item\em Кількість ігор у термінальному звіті \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Глобальна конфігурація\+: API ключі, маппінг жанрів, ліміти. 
+
+Єдине місце для налаштування застосунку. Перед збіркою замініть API\+\_\+\+KEY на реальний ключ.
+
+\begin{DoxySeeAlso}{See also}
+\href{https://steamcommunity.com/dev/apikey}{\texttt{https\+://steamcommunity.\+com/dev/apikey}} 
+\end{DoxySeeAlso}
+
+
+\label{doc-var-members}
+\Hypertarget{config_8h_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{config_8h_afa8c9f6c47c6046d4e8449e03d45b72c}\index{config.h@{config.h}!GENRE\_MAP@{GENRE\_MAP}}
+\index{GENRE\_MAP@{GENRE\_MAP}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{GENRE\_MAP}{GENRE\_MAP}}
+{\footnotesize\ttfamily \label{config_8h_afa8c9f6c47c6046d4e8449e03d45b72c} 
+const std\+::vector$<$std\+::pair$<$std\+::string,std\+::string$>$ $>$ GENRE\+\_\+\+MAP\hspace{0.3cm}{\ttfamily [inline]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}Action"{}},\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Шутери/Екшн"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}Shooter"{}},\ \ \ \ \ \ \textcolor{stringliteral}{"{}Шутери/Екшн"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}FPS"{}},\ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Шутери/Екшн"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}Strategy"{}},\ \ \ \ \ \textcolor{stringliteral}{"{}Стратегії"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}RTS"{}},\ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Стратегії"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}RPG"{}},\ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}РПГ"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}Role-\/Playing"{}},\ \textcolor{stringliteral}{"{}РПГ"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}Adventure"{}},\ \ \ \ \textcolor{stringliteral}{"{}Пригоди"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}Simulation"{}},\ \ \ \textcolor{stringliteral}{"{}Симулятори"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}Sports"{}},\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Спорт"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}Racing"{}},\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Гонки"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}Puzzle"{}},\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Пазли"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}Horror"{}},\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Хорор"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}Indie"{}},\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Інді"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}MMO"{}},\ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ММО"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}Multiplayer"{}},\ \ \textcolor{stringliteral}{"{}Мультиплеєр"{}}\},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Маппінг ключових слів жанрів Steam → українські назви категорій. 
+
+Порядок важливий\+: використовується перший збіг. Нові жанри можна додати до кінця списку. 
