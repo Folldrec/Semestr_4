@@ -1,0 +1,30 @@
+# Benchmark Results – Parallel vs Sequential Merge Sort
+# Columns: input_size | sorter_name | median_time_s | speedup
+
+size      sorter                                                       time_s   speedup
+------------------------------------------------------------------------------------------
+1000      Sequential Merge Sort                                        0.0002     1.00x
+1000      Parallel Merge Sort (threads=1, threshold=1000)              0.0001     1.20x
+1000      Parallel Merge Sort (threads=2, threshold=1000)              0.0001     1.22x
+1000      Parallel Merge Sort (threads=4, threshold=1000)              0.0001     1.24x
+1000      Parallel Merge Sort (threads=8, threshold=1000)              0.0001     1.26x
+5000      Sequential Merge Sort                                        0.0008     1.00x
+5000      Parallel Merge Sort (threads=1, threshold=1000)              0.0008     1.02x
+5000      Parallel Merge Sort (threads=2, threshold=1000)              0.0009     0.93x
+5000      Parallel Merge Sort (threads=4, threshold=1000)              0.0009     0.84x
+5000      Parallel Merge Sort (threads=8, threshold=1000)              0.0011     0.70x
+10000     Sequential Merge Sort                                        0.0018     1.00x
+10000     Parallel Merge Sort (threads=1, threshold=1000)              0.0018     0.97x
+10000     Parallel Merge Sort (threads=2, threshold=1000)              0.0018     1.01x
+10000     Parallel Merge Sort (threads=4, threshold=1000)              0.0019     0.94x
+10000     Parallel Merge Sort (threads=8, threshold=1000)              0.0020     0.90x
+50000     Sequential Merge Sort                                        0.0093     1.00x
+50000     Parallel Merge Sort (threads=1, threshold=1000)              0.0093     1.00x
+50000     Parallel Merge Sort (threads=2, threshold=1000)              0.0102     0.91x
+50000     Parallel Merge Sort (threads=4, threshold=1000)              0.0093     1.00x
+50000     Parallel Merge Sort (threads=8, threshold=1000)              0.0099     0.94x
+100000    Sequential Merge Sort                                        0.0193     1.00x
+100000    Parallel Merge Sort (threads=1, threshold=1000)              0.0188     1.02x
+100000    Parallel Merge Sort (threads=2, threshold=1000)              0.0193     1.00x
+100000    Parallel Merge Sort (threads=4, threshold=1000)              0.0201     0.96x
+100000    Parallel Merge Sort (threads=8, threshold=1000)              0.0199     0.97x
